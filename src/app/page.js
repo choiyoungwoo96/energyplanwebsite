@@ -1,5 +1,6 @@
 import Header from "@/components/Header/header";
 import About from "@/components/Section/about";
+import Business from "@/components/Section/business";
 import Slide from "@/components/Section/slide";
 
 export default function Home() {
@@ -8,6 +9,7 @@ export default function Home() {
       <Header></Header>
       <Slide></Slide>
       <About></About>
+      <Business></Business>
     </div>
   );
 }
