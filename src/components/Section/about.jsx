@@ -1,7 +1,7 @@
 export default function About() {
   return (
-    <div className="w-screen px-4 bg-[#F5FFF7]">
-      <div className="w-full max-w-[1440px] h-full mx-auto grid grid-cols-2 gap-4 py-20">
+    <div className="w-screen h-screen px-4 bg-[#F5FFF7]" id="about">
+      <div className="w-full max-w-[1200px] h-full mx-auto grid grid-cols-2 gap-4 py-20">
         <div>
           <div className="flex items-end justify-start">
             <p className="text-4xl font-bold text-[#393939]">회사소개</p>
@@ -81,7 +81,7 @@ export default function About() {
             </div>
           </div>
         </div>
-        <div className="w-full h-full bg-blue-300 rounded-3xl overflow-hidden bg-[url('/about.jpg')] bg-cover bg-center"></div>
+        <div className="w-full h-[550px] bg-blue-300 rounded-3xl overflow-hidden bg-[url('/about.jpg')] bg-cover bg-center"></div>
       </div>
     </div>
   );
