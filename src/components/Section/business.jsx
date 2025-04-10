@@ -43,7 +43,7 @@ export default function Business() {
       id: 1,
       key: "leasing",
       title: "임대(Leasing Business)",
-      img: "/business01.png",
+      img: "/business02.png",
       subtitle:
         "20년 동안 비어 있는 유휴부지를 빌려주고, 임대료를 받을 수 있는 사업",
       details: [
@@ -70,9 +70,9 @@ export default function Business() {
       id: 2,
       key: "re100",
       title: "RE100 구독형(RE100 Subscription)",
-      img: "/business01.png",
+      img: "/business03.png",
       subtitle:
-        "2년간 일정한 유휴부지를 제공하여 전기로 전환, RE100 혜택 등으로 경제적 이익을 창출할 수 있는 사업",
+        "20년간 일정한 유휴부지를 제공하여 전기로 전환, RE100 혜택 등으로 경제적 이익을 창출할 수 있는 사업",
       details: [
         {
           key: "target",
@@ -136,22 +136,22 @@ export default function Business() {
           })}
         </div>
         <div className="grid grid-cols-2 gap-4 py-10">
-          <div>
-            <img src={activeBusiness.img} />
+          <div className="">
+            <img className="w-full h-full" src={activeBusiness.img} />
           </div>
-          <div className="flex flex-col items-start justify-between gap-5">
-            <div className="flex flex-col gap-1 p-8 bg-[#0c4123] rounded-3xl text-white w-full">
-              <span className="text-2xl">{activeBusiness.title}</span>
+          <div className="flex flex-col items-start justify-between gap-5 p-8 shadow-2xl rounded-[50px]">
+            <div className="flex flex-col gap-1 rounded-3xl text-gray-900 w-full">
+              <span className="text-xl">{activeBusiness.title}</span>
               <span className="text-sm font-light">
                 {activeBusiness.subtitle}
               </span>
             </div>
             {activeBusiness.details.map((detail) => (
               <div key={detail.key} className="flex flex-col gap-4">
-                <div className="text-xl bg-[#0c4123] w-[200px] p-2 flex items-center justify-center text-white rounded-3xl">
+                <div className="text-lg bg-[#0c4123] w-[200px] p-2 flex items-center justify-center text-white rounded-3xl">
                   {detail.label}
                 </div>
-                <span className="text-lg text-gray-600">
+                <span className="text-md text-gray-600">
                   {detail.description}
                 </span>
               </div>

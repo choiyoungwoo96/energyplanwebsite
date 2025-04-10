@@ -1,6 +1,6 @@
 export default function About() {
   return (
-    <div className="w-screen h-screen px-4 bg-[#F5FFF7]" id="about">
+    <div className="w-screen px-4 bg-[#F5FFF7]" id="about">
       <div className="w-full max-w-[1200px] h-full mx-auto grid grid-cols-2 gap-4 py-20">
         <div>
           <div className="flex items-end justify-start">
