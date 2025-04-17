@@ -6,7 +6,7 @@ export default function Footer() {
     <footer className="bg-[#10221B] text-white px-6 py-10">
       <div className="max-w-7xl mx-auto flex flex-col md:flex-row justify-between items-start gap-10">
         {/* Left: Company Info */}
-        <div className="space-y-5 text-sm">
+        <div className="space-y-3 text-sm">
           <div className="flex items-center gap-2">
             <Image
               src="/logo.svg"
