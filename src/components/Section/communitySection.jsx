@@ -4,28 +4,26 @@ import Link from "next/link";
 
 export default function CommunitySection() {
   return (
-    <div
-      className="w-full bg-cover bg-center"
+    <section
+      className="w-full bg-cover bg-center px-4"
       style={{ backgroundImage: "url('/communitybg.png')" }}
+      id="community"
     >
-      <div className="w-full max-w-[1200px] m-auto py-20">
-        {/* 반투명 오버레이 */}
+      <div className="max-w-7xl mx-auto py-16">
+        <div className="flex flex-col items-center justify-center text-center text-white">
+          {/* 제목 */}
+          <h2 className="text-3xl md:text-4xl font-bold">커뮤니티</h2>
+          <p className="text-base md:text-lg">(Community)</p>
+          <p className="text-md md:text-xl font-light mt-4 mb-10 max-w-2xl">
+            유튜브에서 쉽게 배우고, 블로그에서 정보 얻고, SNS에서 함께
+            공유해보세요!
+          </p>
 
-        <div className=" flex flex-col items-center justify-center h-full text-center">
-          {/* 섹션 타이틀 */}
-          <div className="text-white">
-            <h2 className="text-4xl font-bold ">커뮤니티</h2>
-            <p>(Community)</p>
-            <p className="text-xl font-light my-8">
-              유튜브에서 쉽게 배우고, 블로그에서 정보 얻고, SNS에서 함께
-              공유해보세요!
-            </p>
-          </div>
-          {/* 유튜브 영상 썸네일 */}
-          <div className="max-w-[1200px] w-full aspect-video mb-10 rounded-xl overflow-hidden shadow-lg border-4 border-white">
+          {/* 유튜브 썸네일 */}
+          <div className="w-full max-w-5xl aspect-video mb-10 rounded-xl overflow-hidden shadow-lg border-4 border-white">
             <iframe
               className="w-full h-full"
-              src="https://www.youtube-nocookie.com/embed/-dab50NXiCU" // 여기에 실제 영상 ID를 넣으세요
+              src="https://www.youtube-nocookie.com/embed/-dab50NXiCU"
               title="태양광 사업 3가지 방식"
               frameBorder="0"
               allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
@@ -33,8 +31,8 @@ export default function CommunitySection() {
             ></iframe>
           </div>
 
-          {/* 버튼 4개 */}
-          <div className="grid grid-cols-4 sm:grid-cols-4 gap-4 w-full">
+          {/* 버튼 */}
+          <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-4 w-full max-w-5xl">
             {[
               {
                 label: "유튜브",
@@ -62,15 +60,20 @@ export default function CommunitySection() {
                 href={btn.href}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="text-md bg-white text-[#0c4123] font-semibold p-4 rounded-lg flex gap-4 items-center justify-center border-white hover:border-green-950 border-4 transition-all duration-300 hover:scale-90"
+                className="flex items-center justify-center gap-4 p-4 bg-white font-semibold text-md rounded-lg border-4 border-white hover:border-green-950 transition-all duration-300 hover:scale-95"
               >
-                <img src={btn.img} className="w-[40px]" />
-                {btn.label}
+                <img
+                  src={btn.img}
+                  alt={btn.label}
+                  className="w-[32px] h-[32px] object-contain"
+                />
+                <span className="text-[#0c4123]">{btn.label}</span>{" "}
+                {/* ✅ 색상 강제 적용 */}
               </Link>
             ))}
           </div>
         </div>
       </div>
-    </div>
+    </section>
   );
 }

@@ -11,6 +11,7 @@ export default function Business() {
     { id: 1, kr_title: "임대", en_title: "Leasing Business" },
     { id: 2, kr_title: "RE100 구독형", en_title: "RE100 Subscription" },
   ];
+
   const businessTypes = [
     {
       id: 0,
@@ -98,62 +99,74 @@ export default function Business() {
 
   const [activeBoxId, setActiveBoxId] = useState(0);
   const activeBusiness = businessTypes[activeBoxId];
+
   return (
-    <div className="w-screen">
-      <div className="w-full max-w-[1200px] m-auto py-20">
-        <div className="flex flex-col items-center justify-center gap-4">
-          <div className="flex flex-col items-center justify-center">
-            <div className="text-4xl">사업소개</div>
-            <div className="text-2xl">(Business Introduction)</div>
-          </div>
-          <div className="text-center">
+    <div className="w-full bg-white px-4" id="business">
+      <div className="w-full max-w-[1200px] mx-auto py-16">
+        {/* 제목 */}
+        <div className="flex flex-col items-center justify-center gap-4 text-center">
+          <h2 className="text-3xl md:text-4xl font-bold">사업소개</h2>
+          <p className="text-xl md:text-2xl text-gray-600">
+            (Business Introduction)
+          </p>
+          <p className="text-sm md:text-base text-gray-700 leading-relaxed">
             에너지플랜은 태양광 발전소 설계, 시공, 유지관리, 수익 분석까지
             책임지는 전문업체로,
-            <br />
+            <br className="hidden md:block" />
             고객 맞춤형 솔루션을 제공합니다. 신뢰와 투명성을 바탕으로 최상의
             서비스를 제공하며,
-            <br />
+            <br className="hidden md:block" />
             지속 가능한 미래를 위한 태양광 에너지 솔루션을 실현합니다.
-          </div>
+          </p>
         </div>
-        <div className="flex items-center justify-center gap-4 mt-5">
-          {businessBox.map((businessBoxItem) => {
-            const isActive = activeBoxId === businessBoxItem.id;
+
+        {/* 버튼 선택 영역 */}
+        <div className="flex flex-col sm:flex-row items-center justify-center gap-4 mt-8">
+          {businessBox.map((box) => {
+            const isActive = activeBoxId === box.id;
             return (
               <div
-                key={businessBoxItem.id}
-                className={`flex flex-col items-center justify-between  rounded-2xl w-[400px] py-4 ${
+                key={box.id}
+                className={`cursor-pointer flex flex-col items-center justify-center rounded-2xl w-full sm:w-[300px] md:w-[360px] px-6 py-5 text-center transition-all duration-200 ${
                   isActive
                     ? "bg-[#0c4123] text-white"
-                    : "text-[#393939] border border-[#0c4123]"
+                    : "border border-[#0c4123] text-[#393939]"
                 }`}
-                onClick={() => setActiveBoxId(businessBoxItem.id)}
+                onClick={() => setActiveBoxId(box.id)}
               >
-                <span>{businessBoxItem.kr_title}</span>
-                <span>{businessBoxItem.en_title}</span>
+                <span className="text-lg font-semibold">{box.kr_title}</span>
+                <span className="text-sm">{box.en_title}</span>
               </div>
             );
           })}
         </div>
-        <div className="grid grid-cols-2 gap-4 py-10">
-          <div className="">
-            <img className="w-full h-full" src={activeBusiness.img} />
+
+        {/* 상세 내용 영역 */}
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-6 py-10">
+          <div>
+            <img
+              className="w-full h-full rounded-2xl object-cover"
+              src={activeBusiness.img}
+              alt={activeBusiness.title}
+            />
           </div>
-          <div className="flex flex-col items-start justify-between gap-5 p-8 shadow-2xl rounded-[50px]">
-            <div className="flex flex-col gap-1 rounded-3xl text-gray-900 w-full">
-              <span className="text-xl">{activeBusiness.title}</span>
-              <span className="text-sm font-light">
+          <div className="flex flex-col gap-6 p-6 bg-white shadow-2xl rounded-[30px]">
+            <div>
+              <h3 className="text-xl md:text-2xl font-bold text-gray-900">
+                {activeBusiness.title}
+              </h3>
+              <p className="text-sm md:text-base text-gray-600 mt-1">
                 {activeBusiness.subtitle}
-              </span>
+              </p>
             </div>
             {activeBusiness.details.map((detail) => (
-              <div key={detail.key} className="flex flex-col gap-4">
-                <div className="text-lg bg-[#0c4123] w-[200px] p-2 flex items-center justify-center text-white rounded-3xl">
+              <div key={detail.key} className="flex flex-col gap-2">
+                <div className="text-sm md:text-base bg-[#0c4123] text-white w-fit px-4 py-2 rounded-full">
                   {detail.label}
                 </div>
-                <span className="text-md text-gray-600">
+                <p className="text-sm md:text-base text-gray-700 leading-relaxed">
                   {detail.description}
-                </span>
+                </p>
               </div>
             ))}
           </div>

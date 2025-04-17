@@ -6,10 +6,10 @@ export default function Footer() {
     <footer className="bg-[#10221B] text-white px-6 py-10">
       <div className="max-w-7xl mx-auto flex flex-col md:flex-row justify-between items-start gap-10">
         {/* Left: Company Info */}
-        <div className="space-y-2 text-sm">
+        <div className="space-y-5 text-sm">
           <div className="flex items-center gap-2">
             <Image
-              src="/images/logo_white.png"
+              src="/logo.svg"
               alt="에너지플랜 로고"
               width={20}
               height={20}
@@ -20,7 +20,7 @@ export default function Footer() {
             (주)에너지플랜 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 서울특별시
             강서구 마곡중앙로 161-8, 두산더랜드파크 B동 515호
           </p>
-          <p>사업자등록번호: 422-07-03044 &nbsp;&nbsp; 대표자: 김상욱</p>
+          <p>사업자등록번호: 422-07-03044 &nbsp;&nbsp; 대표자: 강성묵</p>
           <p>Copyright ⓒ ENERGYPLAN Co., Ltd. All rights reserved.</p>
         </div>
 
