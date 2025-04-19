@@ -73,7 +73,7 @@ export default function Business() {
       title: "RE100 구독형(RE100 Subscription)",
       img: "/business03.png",
       subtitle:
-        "20년간 일정한 유휴부지를 제공하여 전기로 전환, RE100 혜택 등으로 경제적 이익을 창출할 수 있는 사업",
+        "20년간 일정한 유휴부지를 제공하여 전기로 전환,\nRE100 혜택 등으로 경제적 이익을 창출할 수 있는 사업",
       details: [
         {
           key: "target",
@@ -101,8 +101,8 @@ export default function Business() {
   const activeBusiness = businessTypes[activeBoxId];
 
   return (
-    <div className="w-full bg-white px-4" id="business">
-      <div className="w-full max-w-[1200px] mx-auto py-16">
+    <div className="w-full bg-white px-4 scroll-mt-16" id="business">
+      <div className="w-full max-w-7xl mx-auto py-16">
         {/* 제목 */}
         <div className="flex flex-col items-center justify-center gap-4 text-center">
           <h2 className="text-3xl md:text-4xl font-bold">사업소개</h2>
@@ -150,18 +150,21 @@ export default function Business() {
               alt={activeBusiness.title}
             />
           </div>
-          <div className="flex flex-col gap-6 p-6 bg-white shadow-2xl rounded-[30px]">
-            <div>
-              <h3 className="text-xl md:text-2xl font-bold text-gray-900">
+          <div className="flex flex-col gap-6">
+            <div className="border border-green-950 p-4 rounded-2xl text-center flex flex-col gap-4">
+              <div className="text-xl md:text-2xl font-bold text-[#0c4123]">
                 {activeBusiness.title}
-              </h3>
-              <p className="text-sm md:text-base text-gray-600 mt-1">
+              </div>
+              <p className="text-sm md:text-base text-gray-600 mt-1 whitespace-pre-line">
                 {activeBusiness.subtitle}
               </p>
             </div>
             {activeBusiness.details.map((detail) => (
-              <div key={detail.key} className="flex flex-col gap-2">
-                <div className="text-sm md:text-base bg-[#0c4123] text-white w-fit px-4 py-2 rounded-full">
+              <div
+                key={detail.key}
+                className="flex flex-col gap-2 bg-gray-200 p-6 rounded-3xl"
+              >
+                <div className="text-sm md:text-base w-fit rounded-full">
                   {detail.label}
                 </div>
                 <p className="text-sm md:text-base text-gray-700 leading-relaxed">

@@ -1,163 +1,79 @@
-// "use client";
-// import { motion } from "framer-motion";
-
-// export default function About() {
-//   return (
-//     <section className="w-full px-4 bg-[#F5FFF7]" id="about">
-//       <div className="max-w-7xl mx-auto py-16 grid grid-cols-1 md:grid-cols-2 gap-10 items-center">
-//         {/* 텍스트 영역 */}
-//         <motion.div
-//           initial={{ opacity: 0, y: 30 }}
-//           whileInView={{ opacity: 1, y: 0 }}
-//           transition={{ duration: 0.6 }}
-//           viewport={{ once: true }}
-//           className="flex flex-col gap-8"
-//         >
-//           {/* 제목 */}
-//           <div className="space-y-1">
-//             <h2 className="text-3xl md:text-4xl font-bold text-[#393939]">
-//               회사소개
-//             </h2>
-//             <p className="text-lg md:text-xl text-gray-600">
-//               (Company Introduction)
-//             </p>
-//           </div>
-
-//           {/* 설명 */}
-//           <p className="text-sm md:text-base leading-relaxed text-gray-700">
-//             에너지플랜은 태양광 발전소 설계, 시공, 유지관리, 수익 분석까지
-//             책임지는 전문업체로, 고객 맞춤형 솔루션을 제공합니다.{" "}
-//             <br className="hidden md:block" />
-//             신뢰와 투명성을 바탕으로 최상의 서비스를 제공하며, 지속 가능한
-//             미래를 위한 태양광 에너지 솔루션을 실현합니다.
-//           </p>
-
-//           {/* 아이템 리스트 */}
-//           <div className="flex flex-col gap-8">
-//             {[
-//               {
-//                 icon: "/design.svg",
-//                 title: "발전소 설계",
-//                 subtitle: "(Solar Power Plant Design)",
-//                 desc: `태양광 발전소의 성능은 설계 단계에서 결정됩니다.
-// 에너지플랜은 지형, 기후, 발전량 예측을 종합적으로 분석하여 최적의 패널 배치와 인버터 구성을 설계합니다.`,
-//               },
-//               {
-//                 icon: "/o&m.svg",
-//                 title: "유지관리",
-//                 subtitle: "(Operation & Maintenance)",
-//                 desc: `태양광 발전소는 장기적인 운영이 핵심입니다.
-// 정기 점검, 실시간 모니터링, 패널 및 인버터 유지보수, 문제 대응 시스템을 통해 발전 효율을 극대화합니다.`,
-//               },
-//               {
-//                 icon: "/profit.svg",
-//                 title: "수익 분석",
-//                 subtitle: "(Profitability Analysis)",
-//                 desc: `경제성 확보를 위해 RPS/FIT 정책 기반 수익 모델을 제안하며,
-// 투자 안정성과 장기적인 수익 창출을 지원합니다.`,
-//               },
-//             ].map((item, idx) => (
-//               <div
-//                 key={idx}
-//                 className="flex items-start gap-5 animate-fade-in-up"
-//               >
-//                 <div className="w-[80px] h-[80px] bg-[#0c4123] rounded-full flex items-center justify-center shrink-0">
-//                   <img
-//                     src={item.icon}
-//                     alt={item.title}
-//                     className="w-10 h-10 object-contain"
-//                   />
-//                 </div>
-//                 <div className="flex flex-col gap-2">
-//                   <div className="flex flex-col sm:flex-row sm:items-center gap-1 font-semibold text-[#0c4123] text-base md:text-lg">
-//                     <span className="">{item.title}</span>
-//                     <span className="">{item.subtitle}</span>
-//                   </div>
-//                   <p className="text-xs md:text-sm text-gray-700 whitespace-pre-line">
-//                     {item.desc}
-//                   </p>
-//                 </div>
-//               </div>
-//             ))}
-//           </div>
-//         </motion.div>
-
-//         {/* 이미지 영역 */}
-//         <motion.div
-//           initial={{ opacity: 0, scale: 0.95 }}
-//           whileInView={{ opacity: 1, scale: 1 }}
-//           transition={{ duration: 0.6 }}
-//           viewport={{ once: true }}
-//           className="w-full h-[300px] md:h-[500px] rounded-3xl overflow-hidden bg-[url('/about.jpg')] bg-cover bg-center shadow-lg"
-//         />
-//       </div>
-//     </section>
-//   );
-// }
 "use client";
+import { motion } from "framer-motion";
 
-import { FaPencilRuler, FaMobileAlt, FaGlobe } from "react-icons/fa";
-
-const services = [
-  {
-    icon: <FaPencilRuler size={28} className="text-yellow-500" />,
-    title: "UI/UX Design",
-    description: "Lorem ipsum dolor sit amet, consectetur adipiscing elit.",
-  },
-  {
-    icon: <FaMobileAlt size={28} className="text-yellow-500" />,
-    title: "Application Design",
-    description: "Lorem ipsum dolor sit amet, consectetur adipiscing elit.",
-  },
-  {
-    icon: <FaGlobe size={28} className="text-yellow-500" />,
-    title: "Website Design",
-    description: "Lorem ipsum dolor sit amet, consectetur adipiscing elit.",
-  },
-];
-
-export default function ServiceSection() {
+export default function About() {
   return (
-    <section className="w-full bg-white py-16 px-4 md:px-10">
-      <div className="max-w-7xl mx-auto">
-        {/* 상단 텍스트 & 버튼 */}
-        <div className="flex flex-col md:flex-row justify-between items-center mb-12">
-          <div className="text-center md:text-left">
-            <h3 className="text-sm text-gray-500">— Services</h3>
-            <h2 className="text-3xl font-bold">
-              <span className="text-yellow-500">Services</span>{" "}
-              <span className="text-gray-800">I Provide</span>
+    <section className="w-full px-4 bg-[#F5FFF7] scroll-mt-16" id="about">
+      <div className="max-w-7xl mx-auto py-16 grid grid-cols-1 md:grid-cols-2 gap-10 items-stretch">
+        {/* 텍스트 영역 */}
+        <motion.div
+          initial={{ opacity: 0, y: 30 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.6 }}
+          viewport={{ once: true }}
+          className="flex flex-col gap-8 order-2 md:order-1"
+        >
+          {/* 제목 */}
+          <div className="space-y-1">
+            <h2 className="text-2xl sm:text-3xl md:text-4xl font-bold text-[#393939]">
+              회사소개
             </h2>
+            <p className="text-base sm:text-lg md:text-xl text-gray-600">
+              (Company Introduction)
+            </p>
           </div>
-          <button className="mt-4 md:mt-0 bg-yellow-400 hover:bg-yellow-500 text-white font-medium px-6 py-2 rounded-full shadow flex items-center gap-2">
-            View All Services
-            <span className="w-6 h-6 bg-white text-yellow-500 rounded-full flex items-center justify-center font-bold text-sm">
-              ➔
-            </span>
-          </button>
-        </div>
 
-        {/* 서비스 카드 */}
-        <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6">
-          {services.map((service, index) => (
-            <div
-              key={index}
-              className="bg-white border border-gray-200 rounded-xl shadow-sm hover:shadow-md transition-all p-6 flex flex-col gap-4"
-            >
-              <div>{service.icon}</div>
-              <h4 className="text-lg font-semibold text-gray-800">
-                {service.title}
-              </h4>
-              <p className="text-sm text-gray-500">{service.description}</p>
-              <a
-                href="#"
-                className="text-sm font-medium text-yellow-500 hover:underline mt-auto"
+          {/* 설명 */}
+          <p className="text-sm md:text-base leading-relaxed text-gray-700 whitespace-pre-line">
+            에너지플랜은 태양광 에너지를 기반으로 한 청정 에너지 보급을 통해,
+            기후 위기에 적극 대응하고 지속 가능한 사회로의 전환을 이끄는 데
+            앞장서고 있습니다. 기후 변화와 환경 문제 해결을 위한 실질적인
+            대안으로서 신재생에너지의 중요성이 커지고 있는 지금, 에너지플랜은
+            탄소 배출을 줄이고 에너지 자립률을 높이는 친환경 에너지 생태계를
+            만들어가는 데 집중하고 있습니다.
+          </p>
+
+          {/* 아이템 리스트 */}
+          <div className="flex flex-col gap-8">
+            {[
+              {
+                title: "🌍 탄소중립(Net Zero) 실현을 위한 신재생에너지 확대:",
+                desc: `정부 및 지자체의 에너지 전환 정책과 연계해 탄소중립 실현을 위한 태양광 보급 확대에 주력하고 있으며,\n미래 세대를 위한 에너지 자립 기반을 다져나갑니다.`,
+              },
+              {
+                title: "🤝 고객 중심의 맞춤형 태양광 발전 솔루션 제공:",
+                desc: `다양한 고객의 환경 조건과 요구사항을 반영한 맞춤형 설계를 통해, 효율성과 수익성을 모두 갖춘\n태양광 발전소를 구현합니다. 단순 시공을 넘어 사업 수익성 컨설팅까지 함께 제공하는 것이 에너지플랜의\n차별화된 강점입니다.`,
+              },
+              {
+                title: "🏗 최신 기술과 노하우 기반의 효율적인 발전소 구축:",
+                desc: `수년간의 현장 경험과 기술력, 그리고 철저한 시공·운영 관리 역량을 바탕으로, 에너지 효율이 높은 스마트 태양광 발전소를 설계하고 구축합니다. 또한 발전 이후의 유지보수까지 고려한 전주기 솔루션을 통해 장기적인\n안정성과 수익성을 보장합니다.`,
+              },
+            ].map((item, idx) => (
+              <div
+                key={idx}
+                className="flex items-start gap-3 animate-fade-in-up"
               >
-                Learn more →
-              </a>
-            </div>
-          ))}
-        </div>
+                <div className="flex flex-col gap-2">
+                  <div className="font-semibold text-[#0c4123] text-base md:text-lg">
+                    {item.title}
+                  </div>
+                  <p className="text-xs md:text-sm text-gray-700 whitespace-pre-line">
+                    {item.desc}
+                  </p>
+                </div>
+              </div>
+            ))}
+          </div>
+        </motion.div>
+
+        {/* 이미지 영역 */}
+        <motion.div
+          initial={{ opacity: 0, scale: 0.95 }}
+          whileInView={{ opacity: 1, scale: 1 }}
+          transition={{ duration: 0.6 }}
+          viewport={{ once: true }}
+          className="rounded-3xl overflow-hidden bg-[url('/about.jpg')] bg-cover bg-center shadow-lg min-h-[300px] md:min-h-full order-1 md:order-2"
+        />
       </div>
     </section>
   );

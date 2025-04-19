@@ -14,21 +14,33 @@ export default function ConstructionCases() {
   const constructionData = [
     {
       image: "/construction01.png",
-      location: "경기도",
-      capacity: "300KW",
-      type: "임대",
+      location: "충청도",
+      capacity: "388KW",
+      type: "RPS",
     },
     {
       image: "/construction02.png",
       location: "경기도",
-      capacity: "300KW",
+      capacity: "183KW",
       type: "임대",
     },
     {
       image: "/construction03.png",
       location: "경기도",
-      capacity: "300KW",
-      type: "임대",
+      capacity: "287KW",
+      type: "RPS",
+    },
+    {
+      image: "/construction04.jpg",
+      location: "경상남도",
+      capacity: "272KW",
+      type: "RPS",
+    },
+    {
+      image: "/construction05.jpg",
+      location: "충청북도",
+      capacity: "125KW",
+      type: "RPS",
     },
   ];
 
@@ -59,7 +71,10 @@ export default function ConstructionCases() {
   };
 
   return (
-    <section className="max-w-7xl mx-auto px-4 py-16">
+    <section
+      className="max-w-7xl mx-auto px-4 py-16 scroll-mt-16"
+      id="projects"
+    >
       <h2 className="text-3xl font-bold text-[#0c4123]">시공사례</h2>
       <h3 className="text-1xl text-[#393939]  mb-2">(Construction Cases)</h3>
       {/* 커스텀 컨트롤 */}

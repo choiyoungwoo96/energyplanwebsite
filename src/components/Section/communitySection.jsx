@@ -5,7 +5,7 @@ import Link from "next/link";
 export default function CommunitySection() {
   return (
     <section
-      className="w-full bg-cover bg-center px-4"
+      className="w-full bg-cover bg-center px-4 scroll-mt-16"
       style={{ backgroundImage: "url('/communitybg.png')" }}
       id="community"
     >

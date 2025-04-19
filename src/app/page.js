@@ -6,6 +6,7 @@ import ConstructionCases from "@/components/Section/constructionCases";
 import DirectionSection from "@/components/Section/directionSection";
 import Footer from "@/components/Section/footer";
 import QAAccordion from "@/components/Section/QAAccordion";
+import Service from "@/components/Section/service";
 import Slide from "@/components/Section/slide";
 
 export default function Home() {
@@ -13,6 +14,7 @@ export default function Home() {
     <div>
       <Header></Header>
       <Slide></Slide>
+      <Service></Service>
       <About></About>
       <Business></Business>
       <CommunitySection></CommunitySection>
