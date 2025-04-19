@@ -6,7 +6,7 @@ export default function CommunitySection() {
   return (
     <section
       className="w-full bg-cover bg-center px-4 scroll-mt-16"
-      style={{ backgroundImage: "url('/communitybg.png')" }}
+      style={{ backgroundImage: "url('/communitybg.webp')" }}
       id="community"
     >
       <div className="max-w-7xl mx-auto py-16">

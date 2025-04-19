@@ -17,7 +17,7 @@ export default function Business() {
       id: 0,
       key: "rps",
       title: "선투자(RPS)",
-      img: "/business01.png",
+      img: "/business01.webp",
       subtitle:
         "건물지붕, 토지 등에 직접 태양광을 설치하여 전력을 판매하고 고수익을 창출할 수 있는 사업",
       details: [
@@ -44,7 +44,7 @@ export default function Business() {
       id: 1,
       key: "leasing",
       title: "임대(Leasing Business)",
-      img: "/business02.png",
+      img: "/business02.webp",
       subtitle:
         "20년 동안 비어 있는 유휴부지를 빌려주고, 임대료를 받을 수 있는 사업",
       details: [
@@ -71,7 +71,7 @@ export default function Business() {
       id: 2,
       key: "re100",
       title: "RE100 구독형(RE100 Subscription)",
-      img: "/business03.png",
+      img: "/business03.webp",
       subtitle:
         "20년간 일정한 유휴부지를 제공하여 전기로 전환,\nRE100 혜택 등으로 경제적 이익을 창출할 수 있는 사업",
       details: [

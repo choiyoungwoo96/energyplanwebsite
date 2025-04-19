@@ -13,31 +13,31 @@ export default function ConstructionCases() {
 
   const constructionData = [
     {
-      image: "/construction01.png",
+      image: "/construction01.webp",
       location: "충청도",
       capacity: "388KW",
       type: "RPS",
     },
     {
-      image: "/construction02.png",
+      image: "/construction02.webp",
       location: "경기도",
       capacity: "183KW",
       type: "임대",
     },
     {
-      image: "/construction03.png",
+      image: "/construction03.webp",
       location: "경기도",
       capacity: "287KW",
       type: "RPS",
     },
     {
-      image: "/construction04.jpg",
+      image: "/construction04.webp",
       location: "경상남도",
       capacity: "272KW",
       type: "RPS",
     },
     {
-      image: "/construction05.jpg",
+      image: "/construction05.webp",
       location: "충청북도",
       capacity: "125KW",
       type: "RPS",

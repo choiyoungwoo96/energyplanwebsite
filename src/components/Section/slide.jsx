@@ -2,7 +2,6 @@
 
 import Link from "next/link";
 import { useState } from "react";
-import { FaPause, FaPlay, FaArrowLeft, FaArrowRight } from "react-icons/fa";
 
 export default function FullScreenSlide() {
   const [isPlaying, setIsPlaying] = useState(true);
@@ -11,7 +10,7 @@ export default function FullScreenSlide() {
     <div className="relative w-screen h-screen overflow-hidden scroll-mt-16">
       {/* 배경 이미지 */}
       <img
-        src="/slide01.jpg" // 실제 경로로 교체
+        src="/slide01.webp" // 실제 경로로 교체
         alt="슬라이드 배경"
         className="absolute top-0 left-0 w-full h-full object-cover"
       />
