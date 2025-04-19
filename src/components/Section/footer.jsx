@@ -7,7 +7,7 @@ import Link from "next/link";
 export default function Footer() {
   return (
     <footer className="bg-[#10221B] text-white px-6 py-10">
-      <div className="max-w-7xl mx-auto flex flex-col md:flex-row items-center justify-between gap-10">
+      <div className="max-w-7xl mx-auto flex flex-col md:flex-row md:items-center justify-between gap-10">
         {/* Left: Company Info */}
         <div className="space-y-3 text-sm">
           <div className="flex items-center gap-2">

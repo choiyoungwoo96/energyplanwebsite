@@ -3,11 +3,11 @@
 import { useEffect } from "react";
 
 export default function DirectionsSection() {
+  const kakaoKey = process.env.NEXT_PUBLIC_KAKAO_MAP_KEY;
   useEffect(() => {
     // 카카오 지도 스크립트 로드
     const script = document.createElement("script");
-    script.src =
-      "//dapi.kakao.com/v2/maps/sdk.js?appkey=1a2fe5173b2fb64dd74dc20e9609ee1e&autoload=false";
+    script.src = `//dapi.kakao.com/v2/maps/sdk.js?appkey=${kakaoKey}&autoload=false`;
     script.async = true;
 
     script.onload = () => {
