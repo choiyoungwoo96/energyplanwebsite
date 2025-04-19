@@ -5,6 +5,9 @@ import { useEffect } from "react";
 export default function DirectionsSection() {
   const kakaoKey = process.env.NEXT_PUBLIC_KAKAO_MAP_KEY;
   useEffect(() => {
+    if (!kakaoKey) {
+      console.log("카카오키가 없습니다.");
+    }
     // 카카오 지도 스크립트 로드
     const script = document.createElement("script");
     script.src = `//dapi.kakao.com/v2/maps/sdk.js?appkey=${kakaoKey}&autoload=false`;
