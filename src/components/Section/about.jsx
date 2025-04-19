@@ -1,5 +1,6 @@
 "use client";
 import { motion } from "framer-motion";
+import Image from "next/image";
 
 export default function About() {
   return (
@@ -67,13 +68,16 @@ export default function About() {
         </motion.div>
 
         {/* 이미지 영역 */}
-        <motion.div
-          initial={{ opacity: 0, scale: 0.95 }}
-          whileInView={{ opacity: 1, scale: 1 }}
-          transition={{ duration: 0.6 }}
-          viewport={{ once: true }}
-          className="rounded-3xl overflow-hidden bg-[url('/about.jpg')] bg-cover bg-center shadow-lg min-h-[300px] md:min-h-full order-1 md:order-2"
-        />
+        <div className="relative w-full h-[300px] md:h-full rounded-3xl overflow-hidden shadow-lg order-1 md:order-2">
+          <Image
+            src="/about.webp"
+            alt="회사 소개 이미지"
+            fill
+            className="object-cover"
+            quality={70}
+            priority
+          />
+        </div>
       </div>
     </section>
   );
