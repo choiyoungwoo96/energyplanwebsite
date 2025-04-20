@@ -29,7 +29,7 @@ export default function FullScreenSlide() {
               태양광 발전소 설계부터 시공까지, 맞춤형 솔루션 제공
             </p>
             <Link
-              href="http://www.naver.com"
+              href="https://open.kakao.com/o/s5gyadsh"
               className="bg-[#0c4123] px-6 py-2 rounded-lg text-sm md:text-base font-semibold group hover:bg-white   transition"
             >
               <span className="text-white group-hover:text-green-900">
