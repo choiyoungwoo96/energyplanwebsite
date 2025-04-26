@@ -1,7 +1,6 @@
 "use client";
 
 import Image from "next/image";
-import { Youtube, Instagram, MessageCircleMore, Smile } from "lucide-react";
 import Link from "next/link";
 
 export default function Footer() {

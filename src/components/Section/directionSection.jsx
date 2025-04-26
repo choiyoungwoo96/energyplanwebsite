@@ -1,7 +1,7 @@
 "use client";
 
 import { useEffect } from "react";
-
+import { motion } from "framer-motion";
 export default function DirectionsSection() {
   const kakaoKey = process.env.NEXT_PUBLIC_KAKAO_MAP_KEY;
   useEffect(() => {
@@ -43,19 +43,26 @@ export default function DirectionsSection() {
       className="py-20 px-4 bg-white text-center scroll-mt-16"
       id="location"
     >
-      {/* 타이틀 */}
-      <h2 className="text-3xl font-bold text-gray-800 mb-1">오시는길</h2>
-      <p className="text-gray-500 mb-8">(Directions)</p>
+      <motion.div
+        initial={{ opacity: 0, y: 30 }}
+        whileInView={{ opacity: 1, y: 0 }}
+        transition={{ duration: 0.6 }}
+        viewport={{ once: true }}
+      >
+        {/* 타이틀 */}
+        <h2 className="text-3xl font-bold text-gray-800 mb-1">오시는길</h2>
+        <p className="text-gray-500 mb-8">(Directions)</p>
 
-      {/* 카카오 지도 */}
-      <div className="w-full h-[450px] max-w-5xl mx-auto rounded-xl overflow-hidden shadow-lg">
-        <div id="map" className="w-full h-full" />
-      </div>
+        {/* 카카오 지도 */}
+        <div className="w-full h-[450px] max-w-5xl mx-auto rounded-xl overflow-hidden shadow-lg">
+          <div id="map" className="w-full h-full" />
+        </div>
 
-      {/* 주소 텍스트 */}
-      <div className="mt-8 bg-[#10221B] text-white inline-block px-6 py-3 rounded-full text-sm font-medium shadow">
-        서울특별시 강서구 마곡중앙로 161-8, 두산더랜드파크 B동 515호
-      </div>
+        {/* 주소 텍스트 */}
+        <div className="mt-8 bg-[#10221B] text-white inline-block px-6 py-3 rounded-full text-sm font-medium shadow">
+          서울특별시 강서구 마곡중앙로 161-8, 두산더랜드파크 B동 515호
+        </div>
+      </motion.div>
     </section>
   );
 }
