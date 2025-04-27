@@ -160,7 +160,7 @@ export default function Business() {
             <div className="flex flex-col gap-6">
               <div className="border border-b-green-950 p-4 rounded-2xl text-center flex flex-col gap-4 text-green-950">
                 <div className="text-xl md:text-2xl font-bold ">
-                  s{activeBusiness.title}
+                  {activeBusiness.title}
                 </div>
                 <p className="text-sm md:text-base  mt-1 whitespace-pre-line">
                   {activeBusiness.subtitle}
