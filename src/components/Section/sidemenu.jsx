@@ -17,7 +17,7 @@ export default function Sidemenu() {
       {/* 버튼 */}
       <div
         onClick={toggleMenu}
-        className="flex items-center justify-center rounded-full w-[60px] h-[60px] z-20 bg-green-950 fixed bottom-10 right-5 hover:scale-110 transition-all cursor-pointer"
+        className="flex items-center justify-center rounded-full w-[60px] h-[60px] z-99 bg-green-950 fixed bottom-10 right-5 hover:scale-110 transition-all cursor-pointer"
       >
         {/* 버튼 안에 아이콘 같은 것도 추가 가능 */}
         <span className="text-white text-2xl">+</span>
@@ -31,7 +31,7 @@ export default function Sidemenu() {
             animate={{ opacity: 1, x: 0 }}
             exit={{ opacity: 0, x: 100 }}
             transition={{ duration: 0.4 }}
-            className="flex flex-col items-center w-[130px] bg-white rounded-2xl shadow-md overflow-hidden fixed top-1/2 right-5 z-10 -translate-y-1/2"
+            className="flex flex-col items-center w-[130px] bg-white rounded-2xl shadow-md overflow-hidden fixed top-1/2 right-5 z-99 -translate-y-1/2"
           >
             {/* 로고 영역 */}
             <div className="pt-6 flex flex-col gap-2 items-center">
@@ -52,7 +52,11 @@ export default function Sidemenu() {
                 { src: "/Instagram.png", label: "인스타" },
                 { src: "/NaverBlog.jpg", label: "블로그" },
               ].map((item, idx) => (
-                <Link href="" key={idx} className="flex flex-col items-center">
+                <Link
+                  href=""
+                  key={idx}
+                  className="flex flex-col items-center hover:scale-120"
+                >
                   <Image
                     src={item.src}
                     alt={item.label}
@@ -73,23 +77,32 @@ export default function Sidemenu() {
                 <br />
                 항시 모집중
               </p>
-              <div className="mt-2 flex flex-col items-center">
+              <div className="mt-2 flex flex-col items-center ">
                 <Image
                   src="/kakaotalk.svg"
                   alt="카카오톡"
                   width={60}
                   height={60}
                 />
-                <p className="text-gray-700 text-ms mt-4">카카오톡 문의</p>
+                <Link href="https://open.kakao.com/o/s5gyadsh">
+                  <p className="rounded-2xl text-ms mt-4 bg-red-500 text-white p-2 hover:bg-white hover:text-red-500">
+                    카카오톡 문의
+                  </p>
+                </Link>
               </div>
             </div>
 
             {/* 대표번호 */}
-            <div className="bg-green-900 text-white w-full py-6 flex flex-col items-center text-center">
-              <p className="text-lg font-bold">대표번호</p>
-              <p className="text-xl font-bold mt-2">1688-8096</p>
-              <p className="text-[10px] mt-2">평일 : 오전 9:00 - 오후 6:00</p>
-            </div>
+            <Link
+              href="tel:1688-8096"
+              className="bg-green-900 text-white w-full py-6 flex flex-col items-center text-center"
+            >
+              <div className="text-white">
+                <p className="text-lg font-bold">대표번호</p>
+                <p className="text-xl font-bold mt-2">1688-8096</p>
+                <p className="text-[10px] mt-2">평일 : 오전 9:00 - 오후 6:00</p>
+              </div>
+            </Link>
           </motion.div>
         )}
       </AnimatePresence>
