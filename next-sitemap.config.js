@@ -1,6 +1,3 @@
-/** @type {import('next-sitemap').IConfig} */
-// next-sitemap.config.js
-
 module.exports = {
   siteUrl: "https://www.energyplan-kr.com",
   generateRobotsTxt: true,
