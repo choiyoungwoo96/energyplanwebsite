@@ -50,8 +50,10 @@ export default function RootLayout({ children }) {
   return (
     <html lang="en">
       <head>
-        {/* 기본 메타 */}
-
+        <meta
+          name="naver-site-verification"
+          content="be9f1294516733dbcc1db13fa36b48a64481053e"
+        />
         <link
           href="https://fonts.googleapis.com/css2?family=Mulish:wght@400;500;700&display=swap"
           rel="stylesheet"
