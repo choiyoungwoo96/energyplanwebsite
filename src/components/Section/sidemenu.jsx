@@ -6,7 +6,7 @@ import Image from "next/image";
 import Link from "next/link";
 
 export default function Sidemenu() {
-  const [open, setOpen] = useState(false);
+  const [open, setOpen] = useState(true);
 
   const toggleMenu = () => {
     setOpen((prev) => !prev);
@@ -14,14 +14,15 @@ export default function Sidemenu() {
 
   return (
     <>
-      {/* 버튼 */}
-      <div
-        onClick={toggleMenu}
-        className="flex items-center justify-center rounded-full w-[60px] h-[60px] z-99 bg-green-950 fixed bottom-10 right-5 hover:scale-110 transition-all cursor-pointer"
-      >
-        {/* 버튼 안에 아이콘 같은 것도 추가 가능 */}
-        <span className="text-white text-2xl">+</span>
-      </div>
+      {/* + 버튼 (메뉴가 닫혀있을 때만 표시) */}
+      {!open && (
+        <div
+          onClick={toggleMenu}
+          className="flex items-center justify-center rounded-full w-[60px] h-[60px] z-50 bg-green-950 fixed bottom-5 right-5 hover:scale-110 transition-all cursor-pointer"
+        >
+          <span className="text-white text-2xl">+</span>
+        </div>
+      )}
 
       {/* 사이드 메뉴 */}
       <AnimatePresence>
@@ -31,7 +32,7 @@ export default function Sidemenu() {
             animate={{ opacity: 1, x: 0 }}
             exit={{ opacity: 0, x: 100 }}
             transition={{ duration: 0.4 }}
-            className="flex flex-col items-center w-[130px] bg-white rounded-2xl shadow-md overflow-hidden fixed top-1/2 right-5 z-99 -translate-y-1/2"
+            className="flex flex-col items-center w-[130px] bg-white rounded-2xl shadow-md overflow-hidden fixed top-1/2 right-5 z-40 -translate-y-1/2"
           >
             {/* 로고 영역 */}
             <div className="pt-6 flex flex-col gap-2 items-center">
@@ -55,7 +56,7 @@ export default function Sidemenu() {
                 <Link
                   href=""
                   key={idx}
-                  className="flex flex-col items-center hover:scale-120"
+                  className="flex flex-col items-center hover:scale-110 transition-all"
                 >
                   <Image
                     src={item.src}
@@ -69,7 +70,7 @@ export default function Sidemenu() {
             </div>
 
             {/* 모집 안내 */}
-            <div className="bg-gray-100 w-full py-6 flex flex-col items-center justify-center text-center text-sm">
+            <div className="w-full pb-6 flex flex-col items-center justify-center text-center text-sm">
               <p className="text-red-600 font-semibold">
                 전국 EPC
                 <br />
@@ -77,7 +78,7 @@ export default function Sidemenu() {
                 <br />
                 항시 모집중
               </p>
-              <div className="mt-2 flex flex-col items-center ">
+              <div className="mt-2 flex flex-col items-center">
                 <Image
                   src="/kakaotalk.svg"
                   alt="카카오톡"
@@ -85,7 +86,7 @@ export default function Sidemenu() {
                   height={60}
                 />
                 <Link href="https://open.kakao.com/o/s5gyadsh">
-                  <p className="rounded-2xl text-ms mt-4 bg-red-500 text-white p-2 hover:bg-white hover:text-red-500">
+                  <p className="rounded-2xl text-ms mt-4 bg-red-500 text-white p-2 hover:bg-white hover:text-red-500 transition-all">
                     카카오톡 문의
                   </p>
                 </Link>
@@ -103,6 +104,14 @@ export default function Sidemenu() {
                 <p className="text-[10px] mt-2">평일 : 오전 9:00 - 오후 6:00</p>
               </div>
             </Link>
+
+            {/* X 버튼 (메뉴 닫기) */}
+            <button
+              onClick={toggleMenu}
+              className="w-full py-3 text-center text-red-500 hover:bg-gray-200 transition-all text-sm font-bold border-t border-gray-200"
+            >
+              닫기 ✕
+            </button>
           </motion.div>
         )}
       </AnimatePresence>
