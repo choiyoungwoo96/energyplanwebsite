@@ -1,6 +1,7 @@
 "use client";
 
 import Link from "next/link";
+import { motion } from "framer-motion";
 
 const services = [
   {
@@ -29,7 +30,13 @@ export default function Service() {
       className="w-full bg-white py-16 px-4 md:px-10 scroll-mt-16"
       id="services"
     >
-      <div className="max-w-7xl mx-auto">
+      <motion.div
+        initial={{ opacity: 0, y: 30 }}
+        whileInView={{ opacity: 1, y: 0 }}
+        transition={{ duration: 0.6 }}
+        viewport={{ once: true }}
+        className="max-w-7xl mx-auto"
+      >
         {/* 상단 텍스트 & 버튼 */}
         <div className="flex flex-col md:flex-row justify-between items-center mb-5">
           <div className="text-center md:text-left flex flex-col gap-2">
@@ -65,7 +72,7 @@ export default function Service() {
             </div>
           ))}
         </div>
-      </div>
+      </motion.div>
     </section>
   );
 }
