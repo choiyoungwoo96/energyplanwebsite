@@ -38,12 +38,19 @@ export default function Service() {
         className="max-w-7xl mx-auto"
       >
         {/* 상단 텍스트 & 버튼 */}
-        <div className="flex flex-col md:flex-row justify-between items-center mb-5">
-          <div className="text-center md:text-left flex flex-col gap-2">
+        <div className="flex flex-col md:flex-row justify-center items-center mb-5">
+          <div className="text-center md:text-left flex flex-col gap-2 items-center">
             <h2 className="text-3xl font-bold">
               <span className="text-[#393939] text-3xl">서비스</span>{" "}
             </h2>
             <div className="text-xl">(Service)</div>
+            <div>
+              복잡한 인허가, 자금조달, 시공 과정을 에너지플랜과 함께라면 걱정
+              없습니다.
+              <br />
+              고객의 부담은 줄이고, 수익성과 지속가능성은 높이는 맞춤형 서비스를
+              경험해보세요.
+            </div>
           </div>
         </div>
 
@@ -52,7 +59,7 @@ export default function Service() {
           {services.map((service, index) => (
             <div
               key={index}
-              className="bg-white border border-gray-200 rounded-xl shadow-sm hover:shadow-md transition-all p-6 flex flex-col gap-4"
+              className="bg-white border border-gray-200 rounded-xl shadow-sm hover:shadow-md transition-all p-6 flex flex-col gap-4 items-center"
             >
               <div className="bg-green-950 w-[70px] h-[70px] rounded-full flex items-center justify-center">
                 <img className="w-1/2 h-1/2 filter invert" src={service.icon} />
