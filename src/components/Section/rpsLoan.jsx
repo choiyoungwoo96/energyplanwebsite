@@ -1,229 +1,223 @@
 "use client";
 
 import { useState } from "react";
+import { motion, AnimatePresence } from "framer-motion";
 
-export default function RpsLoanWithGrace() {
+export default function SolarProfitCalculator() {
   const [capacity, setCapacity] = useState("");
-  const [weight, setWeight] = useState("");
+  const [recWeight, setRecWeight] = useState("");
   const [recPrice, setRecPrice] = useState("");
   const [smpPrice, setSmpPrice] = useState("");
-  const [cashCost, setCashCost] = useState("");
+  const [sunHours, setSunHours] = useState("");
+  const [costPerKw, setCostPerKw] = useState("");
   const [interestRate, setInterestRate] = useState("");
-  const [sunlight, setSunlight] = useState("");
   const [graceMonths, setGraceMonths] = useState("");
+  const [result, setResult] = useState(null);
 
   const parse = (v) => parseFloat(v || "0");
+  const format = (v) => `₩${Math.round(v).toLocaleString()}`;
 
-  const capacityNum = parse(capacity);
-  const weightNum = parse(weight);
-  const recNum = parse(recPrice);
-  const smpNum = parse(smpPrice);
-  const cashCostNum = parse(cashCost);
-  const interestNum = parse(interestRate) / 100;
-  const sunlightNum = parse(sunlight);
-  const graceMonthsNum = Math.min(parse(graceMonths), 6);
+  const calculate = () => {
+    const cap = parse(capacity);
+    const recW = parse(recWeight);
+    const recP = parse(recPrice);
+    const smpP = parse(smpPrice);
+    const hours = parse(sunHours);
+    const cost = parse(costPerKw);
+    const rate = parse(interestRate) / 100;
+    const grace = Math.min(parse(graceMonths), 6);
 
-  const totalYears = 20;
-  const loanTermYears = 10;
+    const principal = cap * cost;
+    const monthlyRate = rate / 12;
+    const termMonths = 120;
+    const repaymentMonths = termMonths - grace;
 
-  const principal = capacityNum * cashCostNum;
+    const monthlyPayment =
+      repaymentMonths > 0
+        ? (principal *
+            monthlyRate *
+            Math.pow(1 + monthlyRate, repaymentMonths)) /
+          (Math.pow(1 + monthlyRate, repaymentMonths) - 1)
+        : 0;
 
-  const monthlyInterestOnly = (principal * interestNum) / 12;
+    let efficiency = 1;
+    let data = [];
+    let totalNetProfit = 0;
+    let totalRepayment = 0;
+    let repaidYear = null;
 
-  const monthlyRepayment =
-    interestNum > 0 && loanTermYears > 0
-      ? (((principal * interestNum) / 12) *
-          Math.pow(1 + interestNum / 12, loanTermYears * 12)) /
-        (Math.pow(1 + interestNum / 12, loanTermYears * 12) - 1)
-      : 0;
+    for (let year = 1; year <= 20; year++) {
+      efficiency -= year === 1 ? 0.02 : 0.0045;
 
-  const getAnnualRepayment = (year) => {
-    if (year === 1) {
-      const monthsRepay = 12 - graceMonthsNum;
-      return (
-        monthlyInterestOnly * graceMonthsNum + monthlyRepayment * monthsRepay
-      );
-    } else if (year >= 2 && year <= loanTermYears) {
-      return monthlyRepayment * 12;
-    } else {
-      return 0;
+      const smpIncome = smpP * hours * cap * 365 * efficiency;
+      const recIncome = recP * recW * cap * hours * 365 * efficiency;
+      const totalIncome = smpIncome + recIncome;
+      const maintenance = (cap / 100) * 1680000;
+
+      let annualPayment = 0;
+      if (year <= 10) {
+        const yearStart = (year - 1) * 12 + 1;
+        const yearEnd = year * 12;
+        let paymentMonths = 0;
+
+        for (let m = yearStart; m <= yearEnd; m++) {
+          if (m > grace) paymentMonths++;
+        }
+
+        const interestOnlyMonths = Math.min(
+          12,
+          Math.max(0, grace - (year - 1) * 12)
+        );
+        const interestOnly = interestOnlyMonths * monthlyRate * principal;
+        annualPayment = interestOnly + paymentMonths * monthlyPayment;
+      }
+
+      const netProfit = totalIncome - annualPayment - maintenance;
+      totalNetProfit += netProfit;
+
+      if (!repaidYear && year <= 10) {
+        totalRepayment += annualPayment;
+        if (totalRepayment >= principal) repaidYear = year;
+      }
+
+      data.push({
+        year,
+        smpIncome,
+        recIncome,
+        totalIncome,
+        payment: annualPayment,
+        maintenance,
+        netProfit,
+      });
     }
+
+    setResult({ data, totalNetProfit, repaidYear, principal });
   };
 
-  let efficiency = 1;
-  let cumulativeNet = 0;
-
-  const data = Array.from({ length: totalYears }, (_, i) => {
-    const year = i + 1;
-    efficiency -= year === 1 ? 0.02 : 0.0045;
-    const efficiencyPct = efficiency * 100;
-    const smpRevenue = 365 * sunlightNum * smpNum * capacityNum * efficiency;
-    const recRevenue =
-      365 * sunlightNum * recNum * weightNum * capacityNum * efficiency;
-    const revenue = smpRevenue + recRevenue;
-    const repayment = getAnnualRepayment(year); // 상환금은 효율과 무관하게 고정
-    const net = revenue - repayment;
-    cumulativeNet += net;
-
-    return {
-      year,
-      efficiency: efficiencyPct.toFixed(2),
-      smpRevenue,
-      recRevenue,
-      revenue,
-      repayment,
-      net,
-      cumulativeNet,
-    };
-  });
-
-  const roi = principal > 0 ? (cumulativeNet / principal) * 100 : 0;
-  const bep = data.find((d) => d.cumulativeNet >= principal)?.year || null;
-
   return (
-    <div className="p-4 sm:p-6 lg:p-8 bg-white rounded-xl max-w-7xl mx-auto space-y-6">
-      <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-4">
-        <Input
+    <div className="p-6 max-w-screen-xl mx-auto space-y-8">
+      <div className="grid grid-cols-1 sm:grid-cols-2 xl:grid-cols-4 gap-4 bg-white p-4 sm:p-6 rounded-2xl shadow-lg">
+        <InputBox
           label="설치용량 (kW)"
-          value={capacity}
-          setValue={setCapacity}
-          placeholder="예: 100"
+          onChange={(e) => setCapacity(e.target.value)}
         />
-        <Input
+        <InputBox
           label="REC 가중치"
-          value={weight}
-          setValue={setWeight}
-          placeholder="예: 1.2"
+          onChange={(e) => setRecWeight(e.target.value)}
         />
-        <Input
+        <InputBox
           label="REC 단가 (원)"
-          value={recPrice}
-          setValue={setRecPrice}
-          placeholder="예: 70"
+          onChange={(e) => setRecPrice(e.target.value)}
         />
-        <Input
+        <InputBox
           label="SMP 단가 (원)"
-          value={smpPrice}
-          setValue={setSmpPrice}
-          placeholder="예: 110"
+          onChange={(e) => setSmpPrice(e.target.value)}
         />
-        <Input
-          label="발전시간 (시간/일)"
-          value={sunlight}
-          setValue={setSunlight}
-          placeholder="예: 3.5"
+        <InputBox
+          label="발전시간 (h)"
+          onChange={(e) => setSunHours(e.target.value)}
         />
-        <Input
-          label="현금 공사비 (원/kW)"
-          value={cashCost}
-          setValue={setCashCost}
-          placeholder="예: 1300000"
+        <InputBox
+          label="공사비 (원/kW)"
+          onChange={(e) => setCostPerKw(e.target.value)}
         />
-        <Input
+        <InputBox
           label="이자율 (%)"
-          value={interestRate}
-          setValue={setInterestRate}
-          placeholder="예: 4.5"
+          onChange={(e) => setInterestRate(e.target.value)}
         />
-        <Input
+        <InputBox
           label="거치기간 (개월)"
-          value={graceMonths}
-          setValue={setGraceMonths}
-          placeholder="예: 6"
+          onChange={(e) => setGraceMonths(e.target.value)}
         />
+        <div className="col-span-full text-center">
+          <motion.div
+            whileHover={{ scale: 1.05 }}
+            whileTap={{ scale: 0.95 }}
+            onClick={calculate}
+            className="bg-green-950 hover:bg-green-800 text-white font-semibold px-6 py-2 rounded-xl shadow-md transition w-full"
+          >
+            계산하기
+          </motion.div>
+        </div>
       </div>
 
-      {capacity && cashCost && interestRate && sunlight && (
-        <div className="bg-yellow-50 p-4 border-l-4 border-yellow-400 rounded space-y-1">
-          <p>
-            <strong>상환 총 공사비:</strong>{" "}
-            {Math.floor(principal).toLocaleString("ko-KR")} 원
-          </p>
-          <p>
-            <strong>월 이자:</strong>{" "}
-            {Math.floor(monthlyInterestOnly).toLocaleString("ko-KR")} 원
-          </p>
-          <p>
-            <strong>월 원리금:</strong>{" "}
-            {Math.floor(monthlyRepayment).toLocaleString("ko-KR")} 원
-          </p>
-          <p>
-            <strong>ROI:</strong> {Math.floor(roi).toLocaleString("ko-KR")}%
-          </p>
-          <p>
-            <strong>투자 회수 시점:</strong>{" "}
-            {bep ? `${bep}년차` : "20년 내 회수 불가"}
-          </p>
-        </div>
-      )}
+      <AnimatePresence>
+        {result && (
+          <motion.div
+            key="result"
+            initial={{ opacity: 0, y: 50 }}
+            animate={{ opacity: 1, y: 0 }}
+            exit={{ opacity: 0, y: 50 }}
+            transition={{ duration: 0.5 }}
+            className="space-y-6 px-2 sm:px-0"
+          >
+            <div className="bg-white rounded-xl shadow-md p-4 sm:p-6 text-sm sm:text-base text-gray-800 space-y-2">
+              <div className="text-lg font-bold text-gray-900">
+                💰 총 순수익 (20년 합계):{" "}
+                <span className="text-green-700">
+                  {format(result.totalNetProfit)}
+                </span>
+              </div>
+              <div className="text-md text-gray-900">
+                💸 총 공사비:{" "}
+                <span className="font-semibold">
+                  {format(result.principal)}
+                </span>
+              </div>
+              <div>🧾 VAT: 별도</div>
+              <div>🔌 인입공사비: 별도</div>
+              <div>🏋️ 구조보강비: 별도</div>
+              <div className="text-green-700 font-medium">
+                ✅ 공사비는{" "}
+                <span className="font-bold">{result.repaidYear}년차</span>에
+                모두 상환 완료!
+              </div>
+            </div>
 
-      {capacity && (
-        <div className="overflow-x-auto">
-          <table className="w-full border text-sm text-right mt-4">
-            <thead className="bg-gray-200 text-center">
-              <tr>
-                <th className="border px-2 py-1">연도</th>
-                <th className="border px-2 py-1">효율 (%)</th>
-                <th className="border px-2 py-1">SMP 수익</th>
-                <th className="border px-2 py-1">REC 수익</th>
-                <th className="border px-2 py-1">연 수익</th>
-                <th className="border px-2 py-1">상환금</th>
-                <th className="border px-2 py-1">순수익</th>
-                <th className="border px-2 py-1">누적 순수익</th>
-              </tr>
-            </thead>
-            <tbody>
-              {data.map((row) => (
-                <tr
-                  key={row.year}
-                  className={
-                    row.year === bep ? "bg-green-100 font-semibold" : ""
-                  }
-                >
-                  <td className="border px-2 py-1 text-center">
-                    {row.year}년차
-                  </td>
-                  <td className="border px-2 py-1 text-center">
-                    {row.efficiency}
-                  </td>
-                  <td className="border px-2 py-1">
-                    {Math.floor(row.smpRevenue).toLocaleString("ko-KR")}
-                  </td>
-                  <td className="border px-2 py-1">
-                    {Math.floor(row.recRevenue).toLocaleString("ko-KR")}
-                  </td>
-                  <td className="border px-2 py-1">
-                    {Math.floor(row.revenue).toLocaleString("ko-KR")}
-                  </td>
-                  <td className="border px-2 py-1">
-                    {Math.floor(row.repayment).toLocaleString("ko-KR")}
-                  </td>
-                  <td className="border px-2 py-1">
-                    {Math.floor(row.net).toLocaleString("ko-KR")}
-                  </td>
-                  <td className="border px-2 py-1">
-                    {Math.floor(row.cumulativeNet).toLocaleString("ko-KR")}
-                  </td>
-                </tr>
-              ))}
-            </tbody>
-          </table>
-        </div>
-      )}
+            <div className="overflow-auto rounded-xl shadow-lg">
+              <table className="min-w-[720px] w-full table-fixed text-sm text-center border-collapse">
+                <thead className="bg-green-700 text-white">
+                  <tr>
+                    <th className="p-3">연도</th>
+                    <th className="p-3">SMP 수익</th>
+                    <th className="p-3">REC 수익</th>
+                    <th className="p-3">총 수익</th>
+                    <th className="p-3">상환금</th>
+                    <th className="p-3">유지관리비</th>
+                    <th className="p-3">순수익</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  {result.data.map((row) => (
+                    <tr key={row.year} className="bg-white even:bg-gray-50">
+                      <td className="p-2">{row.year}</td>
+                      <td className="p-2">{format(row.smpIncome)}</td>
+                      <td className="p-2">{format(row.recIncome)}</td>
+                      <td className="p-2">{format(row.totalIncome)}</td>
+                      <td className="p-2">{format(row.payment)}</td>
+                      <td className="p-2">{format(row.maintenance)}</td>
+                      <td className="p-2">{format(row.netProfit)}</td>
+                    </tr>
+                  ))}
+                </tbody>
+              </table>
+            </div>
+          </motion.div>
+        )}
+      </AnimatePresence>
     </div>
   );
 }
 
-function Input({ label, value, setValue, placeholder }) {
+function InputBox({ label, onChange }) {
   return (
-    <div>
-      <label className="block text-sm mb-1">{label}</label>
+    <div className="flex flex-col">
+      <label className="text-sm font-medium text-gray-700 mb-1">{label}</label>
       <input
-        className="w-full p-2 border rounded"
         type="number"
-        value={value}
-        onChange={(e) => setValue(e.target.value)}
-        placeholder={placeholder}
+        step="any"
+        className="px-3 py-2 border border-gray-300 rounded-xl shadow-sm focus:outline-none focus:ring-2 focus:ring-green-500"
+        onChange={onChange}
       />
     </div>
   );

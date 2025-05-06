@@ -15,14 +15,29 @@ const MODES = {
   RE100: "RE100 구독형",
 };
 
+const TITLES = {
+  [MODES.RPS_CASH]: "🌞 RPS 현금 수익 계산기",
+  [MODES.RPS_LOAN]: "🌞 RPS 상환 수익 계산기",
+  [MODES.RENTAL]: "🏢 태양광 임대수익 계산기",
+  [MODES.RE100]: "⚡ RE100 구독형 절감 산출표",
+};
+
 export default function SolarProfitDashboard() {
   const [mode, setMode] = useState(MODES.RPS_CASH);
 
   return (
     <div className="max-w-7xl mx-auto py-16 px-4 sm:px-6 lg:px-8 space-y-6">
-      <h1 className="text-3xl font-bold mb-4 text-center text-[#393939]">
-        태양광 수익 계산기
-      </h1>
+      <motion.h1
+        key={mode}
+        initial={{ opacity: 0, y: -10 }}
+        animate={{ opacity: 1, y: 0 }}
+        exit={{ opacity: 0, y: -10 }}
+        transition={{ duration: 0.3 }}
+        className="text-3xl font-bold mb-2 text-center text-[#393939]"
+      >
+        {TITLES[mode]}
+      </motion.h1>
+
       <h3 className="text-center text-base text-gray-600">
         (Solar Profit Calculator)
       </h3>
