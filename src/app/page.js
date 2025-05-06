@@ -7,11 +7,13 @@ import DirectionSection from "@/components/Section/directionSection";
 import Footer from "@/components/Section/footer";
 import QAAccordion from "@/components/Section/QAAccordion";
 import Service from "@/components/Section/service";
+import Sidemenu from "@/components/Section/sidemenu";
 import Slide from "@/components/Section/slide";
 
 export default function Home() {
   return (
     <div>
+      <Sidemenu></Sidemenu>
       <Header></Header>
       <Slide></Slide>
       <Service></Service>

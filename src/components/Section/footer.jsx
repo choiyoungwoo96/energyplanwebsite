@@ -1,7 +1,6 @@
 "use client";
 
 import Image from "next/image";
-import { Youtube, Instagram, MessageCircleMore, Smile } from "lucide-react";
 import Link from "next/link";
 
 export default function Footer() {
@@ -27,7 +26,7 @@ export default function Footer() {
             <span className="hidden md:inline">&nbsp;&nbsp;&nbsp;&nbsp;</span>
             서울특별시 강서구 마곡중앙로 161-8, 두산더랜드파크 B동 515호
           </p>
-          <p>사업자등록번호: 422-07-03044 &nbsp;&nbsp; 대표자: 강성묵</p>
+          <p>사업자등록번호: 422-87-03644 &nbsp;&nbsp; 대표자: 강성묵</p>
           <p>Copyright ⓒ ENERGYPLAN Co., Ltd. All rights reserved.</p>
         </div>
 

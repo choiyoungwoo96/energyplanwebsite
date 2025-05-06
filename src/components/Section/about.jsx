@@ -1,19 +1,29 @@
 "use client";
-import { motion } from "framer-motion";
-import Image from "next/image";
 
+import Image from "next/image";
+import { motion } from "framer-motion";
 export default function About() {
   return (
     <section className="w-full px-4 bg-[#F5FFF7] scroll-mt-16" id="about">
-      <div className="max-w-7xl mx-auto py-16 grid grid-cols-1 md:grid-cols-2 gap-10 items-stretch">
-        {/* 텍스트 영역 */}
-        <motion.div
-          initial={{ opacity: 0, y: 30 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.6 }}
-          viewport={{ once: true }}
-          className="flex flex-col gap-8 order-2 md:order-1"
-        >
+      {/* 텍스트 영역 */} {/* 이미지 영역 */}
+      <motion.div
+        initial={{ opacity: 0, y: 30 }}
+        whileInView={{ opacity: 1, y: 0 }}
+        transition={{ duration: 0.6 }}
+        viewport={{ once: true }}
+        className="max-w-7xl mx-auto py-16 grid grid-cols-1 md:grid-cols-2 gap-10 items-stretch"
+      >
+        <div className="relative w-full h-[300px] md:h-full rounded-3xl overflow-hidden shadow-lg order-1 md:order-1">
+          <Image
+            src="/about.webp"
+            alt="회사 소개 이미지"
+            fill
+            className="object-cover"
+            quality={70}
+            priority
+          />
+        </div>
+        <div className="flex flex-col gap-8 order-2 md:order-1">
           {/* 제목 */}
           <div className="space-y-1">
             <h2 className="text-2xl sm:text-3xl md:text-4xl font-bold text-[#393939]">
@@ -38,15 +48,15 @@ export default function About() {
           <div className="flex flex-col gap-8">
             {[
               {
-                title: "🌍 탄소중립(Net Zero) 실현을 위한 신재생에너지 확대:",
+                title: "탄소중립(Net Zero) 실현을 위한 신재생에너지 확대",
                 desc: `정부 및 지자체의 에너지 전환 정책과 연계해 탄소중립 실현을 위한 태양광 보급 확대에 주력하고 있으며,\n미래 세대를 위한 에너지 자립 기반을 다져나갑니다.`,
               },
               {
-                title: "🤝 고객 중심의 맞춤형 태양광 발전 솔루션 제공:",
+                title: "고객 중심의 맞춤형 태양광 발전 솔루션 제공",
                 desc: `다양한 고객의 환경 조건과 요구사항을 반영한 맞춤형 설계를 통해, 효율성과 수익성을 모두 갖춘\n태양광 발전소를 구현합니다. 단순 시공을 넘어 사업 수익성 컨설팅까지 함께 제공하는 것이 에너지플랜의\n차별화된 강점입니다.`,
               },
               {
-                title: "🏗 최신 기술과 노하우 기반의 효율적인 발전소 구축:",
+                title: "최신 기술과 노하우 기반의 효율적인 발전소 구축",
                 desc: `수년간의 현장 경험과 기술력, 그리고 철저한 시공·운영 관리 역량을 바탕으로, 에너지 효율이 높은 스마트 태양광 발전소를 설계하고 구축합니다. 또한 발전 이후의 유지보수까지 고려한 전주기 솔루션을 통해 장기적인\n안정성과 수익성을 보장합니다.`,
               },
             ].map((item, idx) => (
@@ -65,20 +75,8 @@ export default function About() {
               </div>
             ))}
           </div>
-        </motion.div>
-
-        {/* 이미지 영역 */}
-        <div className="relative w-full h-[300px] md:h-full rounded-3xl overflow-hidden shadow-lg order-1 md:order-2">
-          <Image
-            src="/about.webp"
-            alt="회사 소개 이미지"
-            fill
-            className="object-cover"
-            quality={70}
-            priority
-          />
         </div>
-      </div>
+      </motion.div>
     </section>
   );
 }

@@ -59,54 +59,63 @@ export default function QAAccordion() {
       className="bg-[#10221B] py-20 px-6 text-white scroll-mt-16"
       id="qna"
     >
-      <div className="max-w-3xl mx-auto text-center mb-10">
-        <h2 className="text-3xl font-bold">Q&amp;A</h2>
-        <p className="text-gray-300 text-sm mt-2">
-          태양광 발전, 어렵지 않아요! 가장 많이 하는 질문들
-        </p>
-      </div>
+      <motion.div
+        initial={{ opacity: 0, y: 30 }}
+        whileInView={{ opacity: 1, y: 0 }}
+        transition={{ duration: 0.6 }}
+        viewport={{ once: true }}
+      >
+        <div className="max-w-3xl mx-auto text-center mb-10">
+          <h2 className="text-3xl font-bold">Q&amp;A</h2>
+          <p className="text-gray-300 text-sm mt-2">
+            태양광 발전, 어렵지 않아요! 가장 많이 하는 질문들
+          </p>
+        </div>
 
-      <div className="space-y-4 max-w-3xl mx-auto relative">
-        {qaList.map((qa, index) => {
-          const isOpen = openIndex === index;
-          return (
-            <div key={index} className="overflow-hidden rounded-md">
-              {/* 질문 */}
-              <div
-                onClick={() => toggleIndex(index)}
-                aria-expanded={isOpen}
-                className={`w-full text-left px-6 py-4 flex justify-between items-center transition-all duration-300 ${
-                  isOpen
-                    ? "bg-[#FDBA12] text-black font-semibold"
-                    : "bg-[#58756A] text-white"
-                }`}
-              >
-                <span className="text-base">Q. {qa.question}</span>
-                {isOpen ? (
-                  <ChevronUp className={isOpen ? "text-black" : "text-white"} />
-                ) : (
-                  <ChevronDown className="text-white" />
-                )}
+        <div className="space-y-4 max-w-3xl mx-auto relative">
+          {qaList.map((qa, index) => {
+            const isOpen = openIndex === index;
+            return (
+              <div key={index} className="overflow-hidden rounded-md">
+                {/* 질문 */}
+                <div
+                  onClick={() => toggleIndex(index)}
+                  aria-expanded={isOpen}
+                  className={`w-full text-left px-6 py-4 flex justify-between items-center transition-all duration-300 ${
+                    isOpen
+                      ? "bg-[#FDBA12] text-black font-semibold"
+                      : "bg-[#58756A] text-white"
+                  }`}
+                >
+                  <span className="text-base">Q. {qa.question}</span>
+                  {isOpen ? (
+                    <ChevronUp
+                      className={isOpen ? "text-black" : "text-white"}
+                    />
+                  ) : (
+                    <ChevronDown className="text-white" />
+                  )}
+                </div>
+
+                {/* 답변 */}
+                <AnimatePresence initial={false}>
+                  {isOpen && (
+                    <motion.div
+                      initial={{ height: 0, opacity: 0 }}
+                      animate={{ height: "auto", opacity: 1 }}
+                      exit={{ height: 0, opacity: 0 }}
+                      transition={{ duration: 0.3 }}
+                      className="bg-[#FDBA12] text-black px-6 pb-2 text-sm whitespace-break-spaces"
+                    >
+                      {qa.answer}
+                    </motion.div>
+                  )}
+                </AnimatePresence>
               </div>
-
-              {/* 답변 */}
-              <AnimatePresence initial={false}>
-                {isOpen && (
-                  <motion.div
-                    initial={{ height: 0, opacity: 0 }}
-                    animate={{ height: "auto", opacity: 1 }}
-                    exit={{ height: 0, opacity: 0 }}
-                    transition={{ duration: 0.3 }}
-                    className="bg-[#FDBA12] text-black px-6 pb-2 text-sm whitespace-break-spaces"
-                  >
-                    {qa.answer}
-                  </motion.div>
-                )}
-              </AnimatePresence>
-            </div>
-          );
-        })}
-      </div>
+            );
+          })}
+        </div>
+      </motion.div>
     </section>
   );
 }
