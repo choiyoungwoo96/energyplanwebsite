@@ -2,28 +2,39 @@
 
 import Image from "next/image";
 import { motion } from "framer-motion";
+
 export default function About() {
+  const services = [
+    {
+      icon: "/production.svg",
+      title: "태양광 상품 개발 및 솔루션 제공",
+      description:
+        "- 신재생에너지 사업 기획\n- 모듈 및 인버터 최적화\n- RE100 대응 솔루션",
+    },
+    {
+      icon: "/cash.svg",
+      title: "금융조달 및 투자 유치",
+      description:
+        "- 태양광 프로젝트 금융조달\n- 정부 및 공공 지원사업 연계\n- 민간 및 기관 투자 유치",
+    },
+    {
+      icon: "/epc.svg",
+      title: "EPC 및 O&M",
+      description:
+        "- 토탈 EPC 솔루션 제공\n- 스마트 O&M 관리 시스템\n- 장기적 안정성 및 수익 보장",
+    },
+  ];
   return (
     <section className="w-full px-4 bg-[#F5FFF7] scroll-mt-16" id="about">
-      {/* 텍스트 영역 */} {/* 이미지 영역 */}
-      <motion.div
-        initial={{ opacity: 0, y: 30 }}
-        whileInView={{ opacity: 1, y: 0 }}
-        transition={{ duration: 0.6 }}
-        viewport={{ once: true }}
-        className="max-w-7xl mx-auto py-16 grid grid-cols-1 md:grid-cols-2 gap-10 items-stretch"
-      >
-        <div className="relative w-full h-[300px] md:h-full rounded-3xl overflow-hidden shadow-lg order-1 md:order-1">
-          <Image
-            src="/about.webp"
-            alt="회사 소개 이미지"
-            fill
-            className="object-cover"
-            quality={70}
-            priority
-          />
-        </div>
-        <div className="flex flex-col gap-8 order-2 md:order-1">
+      <div className="max-w-7xl mx-auto py-16 grid grid-cols-1 md:grid-cols-2 gap-10 items-stretch">
+        {/* 텍스트 영역 */}
+        <motion.div
+          initial={{ opacity: 0, y: 30 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.6 }}
+          viewport={{ once: true }}
+          className="flex flex-col gap-8 order-2 md:order-1"
+        >
           {/* 제목 */}
           <div className="space-y-1">
             <h2 className="text-2xl sm:text-3xl md:text-4xl font-bold text-[#393939]">
@@ -75,8 +86,20 @@ export default function About() {
               </div>
             ))}
           </div>
+        </motion.div>
+
+        {/* 이미지 영역 */}
+        <div className="relative w-full h-[300px] md:h-full rounded-3xl overflow-hidden shadow-lg order-1 md:order-2">
+          <Image
+            src="/about.webp"
+            alt="회사 소개 이미지"
+            fill
+            className="object-cover"
+            quality={70}
+            priority
+          />
         </div>
-      </motion.div>
+      </div>
     </section>
   );
 }

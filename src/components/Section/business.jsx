@@ -1,13 +1,10 @@
 "use client";
 import { useState } from "react";
 import { motion } from "framer-motion";
+
 export default function Business() {
   const businessBox = [
-    {
-      id: 0,
-      kr_title: "선투자",
-      en_title: "RPS",
-    },
+    { id: 0, kr_title: "선투자", en_title: "RPS" },
     { id: 1, kr_title: "임대", en_title: "Leasing Business" },
     { id: 2, kr_title: "RE100 구독형", en_title: "RE100 Subscription" },
   ];
@@ -150,7 +147,7 @@ export default function Business() {
 
           {/* 상세 내용 영역 */}
           <div className="grid grid-cols-1 md:grid-cols-2 gap-6 py-10">
-            <div className="order-1">
+            <div>
               <img
                 className="w-full h-full rounded-2xl object-cover"
                 src={activeBusiness.img}
@@ -158,18 +155,18 @@ export default function Business() {
               />
             </div>
             <div className="flex flex-col gap-6">
-              <div className="border border-b-green-950 p-4 rounded-2xl text-center flex flex-col gap-4 text-green-950">
-                <div className="text-xl md:text-2xl font-bold ">
-                  s{activeBusiness.title}
+              <div className="border border-green-950 p-4 rounded-2xl text-center flex flex-col gap-4">
+                <div className="text-xl md:text-2xl font-bold text-[#0c4123]">
+                  {activeBusiness.title}
                 </div>
-                <p className="text-sm md:text-base  mt-1 whitespace-pre-line">
+                <p className="text-sm md:text-base text-gray-600 mt-1 whitespace-pre-line">
                   {activeBusiness.subtitle}
                 </p>
               </div>
               {activeBusiness.details.map((detail) => (
                 <div
                   key={detail.key}
-                  className="flex flex-col gap-2 bg-gray-100 p-6 rounded-3xl"
+                  className="flex flex-col gap-2 bg-gray-200 p-6 rounded-3xl"
                 >
                   <div className="text-sm md:text-base w-fit rounded-full">
                     {detail.label}
