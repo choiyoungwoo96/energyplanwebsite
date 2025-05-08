@@ -18,7 +18,7 @@ export default function Header() {
   }, []);
 
   const menuItems = [
-    { label: "서비스", href: "#services" },
+    // { label: "서비스", href: "#services" },
     { label: "회사소개", href: "#about" },
     { label: "사업소개", href: "#business" },
     { label: "커뮤니티", href: "#community" },
