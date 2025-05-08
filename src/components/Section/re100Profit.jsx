@@ -82,30 +82,37 @@ export default function Re100SubscriptionTable() {
         <InputBox
           label="설치용량 (kW)"
           onChange={(e) => setCapacity(e.target.value)}
+          placeholder="예: 100"
         />
         <InputBox
           label="발전시간 (시간/일)"
           onChange={(e) => setSunlight(e.target.value)}
+          placeholder="예: 3.6"
         />
         <InputBox
           label="한전 전기료 (원/kWh)"
           onChange={(e) => setKepcoRate(e.target.value)}
+          placeholder="예: 173"
         />
         <InputBox
           label="기본 고정계약 연수"
           onChange={(e) => setBaseYears(e.target.value)}
+          placeholder="예: 10"
         />
         <InputBox
           label="추가 고정계약 연수"
           onChange={(e) => setExtraYears(e.target.value)}
+          placeholder="예: 5"
         />
         <InputBox
           label="기본 고정단가 (원/kWh)"
           onChange={(e) => setBaseFixedRate(e.target.value)}
+          placeholder="예: 168"
         />
         <InputBox
           label="추가 고정단가 (원/kWh)"
           onChange={(e) => setExtraFixedRate(e.target.value)}
+          placeholder="예: 88"
         />
         <div className="col-span-full text-center">
           <motion.div
@@ -185,7 +192,7 @@ export default function Re100SubscriptionTable() {
   );
 }
 
-function InputBox({ label, onChange }) {
+function InputBox({ label, onChange, placeholder }) {
   return (
     <div className="flex flex-col">
       <label className="text-sm font-medium text-gray-700 mb-1">{label}</label>
@@ -194,6 +201,7 @@ function InputBox({ label, onChange }) {
         step="any"
         className="px-3 py-2 border border-gray-300 rounded-xl shadow-sm focus:outline-none focus:ring-2 focus:ring-green-500"
         onChange={onChange}
+        placeholder={placeholder}
       />
     </div>
   );

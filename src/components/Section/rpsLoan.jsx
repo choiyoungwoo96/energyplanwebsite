@@ -100,34 +100,42 @@ export default function SolarProfitCalculator() {
         <InputBox
           label="설치용량 (kW)"
           onChange={(e) => setCapacity(e.target.value)}
+          placeholder="예: 100"
         />
         <InputBox
           label="REC 가중치"
           onChange={(e) => setRecWeight(e.target.value)}
+          placeholder="예: 1.5"
         />
         <InputBox
           label="REC 단가 (원)"
           onChange={(e) => setRecPrice(e.target.value)}
+          placeholder="예: 76"
         />
         <InputBox
           label="SMP 단가 (원)"
           onChange={(e) => setSmpPrice(e.target.value)}
+          placeholder="예: 128"
         />
         <InputBox
           label="발전시간 (h)"
           onChange={(e) => setSunHours(e.target.value)}
+          placeholder="예: 6.4"
         />
         <InputBox
           label="공사비 (원/kW)"
           onChange={(e) => setCostPerKw(e.target.value)}
+          placeholder="예: 1300000"
         />
         <InputBox
           label="이자율 (%)"
           onChange={(e) => setInterestRate(e.target.value)}
+          placeholder="예: 6.4"
         />
         <InputBox
           label="거치기간 (개월)"
           onChange={(e) => setGraceMonths(e.target.value)}
+          placeholder="예: 6"
         />
         <div className="col-span-full text-center">
           <motion.div
@@ -209,7 +217,7 @@ export default function SolarProfitCalculator() {
   );
 }
 
-function InputBox({ label, onChange }) {
+function InputBox({ label, onChange, placeholder }) {
   return (
     <div className="flex flex-col">
       <label className="text-sm font-medium text-gray-700 mb-1">{label}</label>
@@ -218,6 +226,7 @@ function InputBox({ label, onChange }) {
         step="any"
         className="px-3 py-2 border border-gray-300 rounded-xl shadow-sm focus:outline-none focus:ring-2 focus:ring-green-500"
         onChange={onChange}
+        placeholder={placeholder}
       />
     </div>
   );

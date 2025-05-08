@@ -50,22 +50,27 @@ export default function RentalProfit() {
         <InputBox
           label="설치용량 (kW)"
           onChange={(e) => setCapacity(e.target.value)}
+          placeholder="예: 100"
         />
         <InputBox
           label="기본료 (원/kW)"
           onChange={(e) => setBaseFee(e.target.value)}
+          placeholder="예: 40000"
         />
         <InputBox
           label="선납료 (원/kW)"
           onChange={(e) => setPrepaidFee(e.target.value)}
+          placeholder="예: 35000"
         />
         <InputBox
           label="선납년수 (년)"
           onChange={(e) => setPrepaidYears(e.target.value)}
+          placeholder="예: 5"
         />
         <InputBox
           label="경영지원금 (원/kW)"
           onChange={(e) => setSupportFee(e.target.value)}
+          placeholder="예: 100000"
         />
         <div className="col-span-full text-center">
           <motion.div
@@ -149,7 +154,7 @@ export default function RentalProfit() {
   );
 }
 
-function InputBox({ label, onChange }) {
+function InputBox({ label, onChange, placeholder }) {
   return (
     <div className="flex flex-col">
       <label className="text-sm font-medium text-gray-700 mb-1">{label}</label>
@@ -158,6 +163,7 @@ function InputBox({ label, onChange }) {
         step="any"
         className="px-3 py-2 border border-gray-300 rounded-xl shadow-sm focus:outline-none focus:ring-2 focus:ring-blue-500"
         onChange={onChange}
+        placeholder={placeholder}
       />
     </div>
   );

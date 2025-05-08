@@ -72,25 +72,25 @@ export default function RpsCash() {
           label="REC 가중치"
           value={weight}
           setValue={setWeight}
-          placeholder="예: 1.2"
+          placeholder="예: 1.5"
         />
         <Input
           label="REC 단가 (원)"
           value={recPrice}
           setValue={setRecPrice}
-          placeholder="예: 70"
+          placeholder="예: 76"
         />
         <Input
           label="SMP 단가 (원)"
           value={smpPrice}
           setValue={setSmpPrice}
-          placeholder="예: 110"
+          placeholder="예: 128"
         />
         <Input
           label="발전시간 (시간/일)"
           value={sunlight}
           setValue={setSunlight}
-          placeholder="예: 3.5"
+          placeholder="예: 3.6"
         />
         <Input
           label="현금 공사비 (원/kW)"
