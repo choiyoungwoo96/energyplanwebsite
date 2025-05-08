@@ -5,6 +5,7 @@ import CommunitySection from "@/components/Section/communitySection";
 import ConstructionCases from "@/components/Section/constructionCases";
 import DirectionSection from "@/components/Section/directionSection";
 import Footer from "@/components/Section/footer";
+import Profit from "@/components/Section/profit";
 
 import QAAccordion from "@/components/Section/QAAccordion";
 import Service from "@/components/Section/service";
@@ -18,6 +19,7 @@ export default function Home() {
       <Sidemenu></Sidemenu>
       <Header></Header>
       <Slide></Slide>
+      <Profit></Profit>
       <About></About>
       <Business></Business>
       <CommunitySection></CommunitySection>

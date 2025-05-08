@@ -22,7 +22,7 @@ const TITLES = {
   [MODES.RE100]: "⚡ RE100 구독형 절감 산출표",
 };
 
-export default function SolarProfitDashboard() {
+export default function Profit() {
   const [mode, setMode] = useState(MODES.RPS_CASH);
 
   return (
