@@ -34,7 +34,7 @@ export default function Re100SubscriptionTable() {
 
     for (let year = 1; year <= 20; year++) {
       efficiency -= year === 1 ? 0.02 : 0.0045;
-      kepco = year === 1 ? kepco : kepco * 1.045;
+      kepco = kepco * 1.046;
 
       const production = cap * hour * 365 * efficiency;
       let fixed = 0;
