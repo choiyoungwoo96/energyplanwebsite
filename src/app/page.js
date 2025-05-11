@@ -3,6 +3,7 @@ import About from "@/components/Section/about";
 import Business from "@/components/Section/business";
 import CommunitySection from "@/components/Section/communitySection";
 import ConstructionCases from "@/components/Section/constructionCases";
+import Contact from "@/components/Section/contact";
 import DirectionSection from "@/components/Section/directionSection";
 import Footer from "@/components/Section/footer";
 import Profit from "@/components/Section/profit";
@@ -26,6 +27,7 @@ export default function Home() {
       <ConstructionCases></ConstructionCases>
       <QAAccordion></QAAccordion>
       <DirectionSection></DirectionSection>
+      {/* <Contact></Contact> */}
       <Footer></Footer>
     </div>
   );
