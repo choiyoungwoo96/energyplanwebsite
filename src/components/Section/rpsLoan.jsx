@@ -15,7 +15,7 @@ export default function SolarProfitCalculator() {
   const [result, setResult] = useState(null);
 
   const parse = (v) => parseFloat(v || "0");
-  const format = (v) => `₩${Math.round(v).toLocaleString()}`;
+  const format = (v) => `₩${Math.floor(v).toLocaleString("ko-KR")} 원`;
 
   const calculate = () => {
     const cap = parse(capacity);
@@ -47,12 +47,18 @@ export default function SolarProfitCalculator() {
     let repaidYear = null;
 
     for (let year = 1; year <= 20; year++) {
-      efficiency -= year === 1 ? 0.02 : 0.0045;
+      if (year === 1) {
+        efficiency = 0.98; // 1년차는 98%
+      } else {
+        efficiency *= 0.9955; // 매년 전년도 대비 0.45% 감소
+      }
 
-      const smpIncome = smpP * hours * cap * 365 * efficiency;
-      const recIncome = recP * recW * cap * hours * 365 * efficiency;
-      const totalIncome = smpIncome + recIncome;
-      const maintenance = (cap / 100) * 1680000;
+      const smpIncome = Math.floor(smpP * hours * cap * 365 * efficiency);
+      const recIncome = Math.floor(
+        recP * recW * cap * hours * 365 * efficiency
+      );
+      const totalIncome = Math.floor(smpIncome + recIncome);
+      const maintenance = Math.floor((cap / 100) * 1680000);
 
       let annualPayment = 0;
       if (year <= 10) {
@@ -68,8 +74,12 @@ export default function SolarProfitCalculator() {
           12,
           Math.max(0, grace - (year - 1) * 12)
         );
-        const interestOnly = interestOnlyMonths * monthlyRate * principal;
-        annualPayment = interestOnly + paymentMonths * monthlyPayment;
+        const interestOnly = Math.floor(
+          interestOnlyMonths * monthlyRate * principal
+        );
+        annualPayment = Math.floor(
+          interestOnly + paymentMonths * monthlyPayment
+        );
       }
 
       const netProfit = totalIncome - annualPayment - maintenance;
@@ -88,6 +98,7 @@ export default function SolarProfitCalculator() {
         payment: annualPayment,
         maintenance,
         netProfit,
+        efficiency: (efficiency * 100).toFixed(2),
       });
     }
 
@@ -187,6 +198,7 @@ export default function SolarProfitCalculator() {
                 <thead className="bg-green-700 text-white">
                   <tr>
                     <th className="p-3">연도</th>
+                    <th className="p-3">모듈 효율 (%)</th>
                     <th className="p-3">SMP 수익</th>
                     <th className="p-3">REC 수익</th>
                     <th className="p-3">총 수익</th>
@@ -199,6 +211,7 @@ export default function SolarProfitCalculator() {
                   {result.data.map((row) => (
                     <tr key={row.year} className="bg-white even:bg-gray-50">
                       <td className="p-2">{row.year}</td>
+                      <td className="p-2">{row.efficiency}</td>
                       <td className="p-2">{format(row.smpIncome)}</td>
                       <td className="p-2">{format(row.recIncome)}</td>
                       <td className="p-2">{format(row.totalIncome)}</td>

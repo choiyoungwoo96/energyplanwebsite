@@ -13,7 +13,7 @@ export default function RpsCash() {
   const [showResult, setShowResult] = useState(false);
 
   const parse = (v) => parseFloat(v || "0");
-  const format = (v) => `₩${Math.round(v).toLocaleString("ko-KR")} 원`;
+  const format = (v) => `₩${Number(v).toLocaleString("ko-KR")} 원`;
 
   const totalConstructionCost = () => parse(cashCost) * parse(capacity);
 
@@ -29,19 +29,22 @@ export default function RpsCash() {
     const rows = [];
 
     for (let year = 1; year <= 20; year++) {
-      efficiency -= year === 1 ? 0.02 : 0.0045;
+      if (year === 1) {
+        efficiency = 0.98;
+      } else {
+        efficiency *= 0.9955;
+      }
 
-      const smpIncome = smp * sun * cap * 365 * efficiency;
-      const recIncome = rec * w * sun * 365 * efficiency * cap;
-      const maintenance = (cap / 100) * 1680000;
-
-      const totalIncome = smpIncome + recIncome;
-      const netProfit = totalIncome - maintenance;
+      const smpIncome = Math.ceil(smp * sun * cap * 365 * efficiency);
+      const recIncome = Math.ceil(rec * w * sun * 365 * efficiency * cap);
+      const totalIncome = Math.ceil(smpIncome + recIncome);
+      const maintenance = Math.ceil((cap / 100) * 1680000);
+      const netProfit = Math.ceil(totalIncome - maintenance);
       cumulative += netProfit;
 
       rows.push({
         year,
-        efficiency: (efficiency * 100).toFixed(2),
+        efficiency: parseFloat((efficiency * 100).toFixed(2)),
         smpIncome,
         recIncome,
         totalIncome,
@@ -109,6 +112,7 @@ export default function RpsCash() {
           </motion.div>
         </div>
       </div>
+
       <AnimatePresence>
         {showResult && (
           <motion.div
@@ -159,7 +163,11 @@ export default function RpsCash() {
                       }
                     >
                       <td className="p-2">{row.year}년차</td>
-                      <td className="p-2">{row.efficiency}</td>
+                      <td className="p-2">
+                        {row.efficiency.toLocaleString("ko-KR", {
+                          maximumFractionDigits: 2,
+                        })}
+                      </td>
                       <td className="p-2">{format(row.smpIncome)}</td>
                       <td className="p-2">{format(row.recIncome)}</td>
                       <td className="p-2">{format(row.totalIncome)}</td>

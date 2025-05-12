@@ -33,8 +33,14 @@ export default function Re100SubscriptionTable() {
     let selfSaving = 0;
 
     for (let year = 1; year <= 20; year++) {
-      efficiency -= year === 1 ? 0.02 : 0.0045;
-      kepco = kepco * 1.046;
+      // 전년 대비 0.45% 감소
+      if (year === 1) {
+        efficiency = 0.98;
+      } else {
+        efficiency *= 0.9955;
+      }
+
+      kepco *= 1.046;
 
       const production = cap * hour * 365 * efficiency;
       let fixed = 0;
@@ -128,27 +134,27 @@ export default function Re100SubscriptionTable() {
 
       {summary && (
         <div className="bg-white rounded-xl shadow-md p-4 sm:p-6 text-sm sm:text-base text-gray-800 space-y-2">
-          <div className="text-lg font-bold text-gray-900">📋 감추 요약</div>
+          <div className="text-lg font-bold text-gray-900">📋 감축 요약</div>
           <p>
-            ✅ <strong>기본 고정단가 계약기간 감추:</strong>{" "}
+            ✅ <strong>기본 고정단가 계약기간 감축:</strong>{" "}
             <span className="text-blue-700 font-semibold">
               {format(summary.baseSaving)}
             </span>
           </p>
           <p>
-            ✅ <strong>추가 고정단가 계약기간 감추:</strong>{" "}
+            ✅ <strong>추가 고정단가 계약기간 감축:</strong>{" "}
             <span className="text-blue-700 font-semibold">
               {format(summary.extraSaving)}
             </span>
           </p>
           <p>
-            ✅ <strong>계약 외 자가소비 감추:</strong>{" "}
+            ✅ <strong>계약 외 자가소비 감축:</strong>{" "}
             <span className="text-blue-700 font-semibold">
               {format(summary.selfSaving)}
             </span>
           </p>
           <p>
-            💰 <strong>20년 총 감추금액:</strong>{" "}
+            💰 <strong>20년 총 감축금액:</strong>{" "}
             <span className="text-green-700 font-bold">
               {format(summary.total)}
             </span>
