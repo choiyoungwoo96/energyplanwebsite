@@ -29,7 +29,7 @@ export default function Sidemenu() {
             animate={{ opacity: 1, x: 0 }}
             exit={{ opacity: 0, x: 100 }}
             transition={{ duration: 0.4 }}
-            className="flex flex-col items-center w-[110px] sm:w-[130px] bg-white rounded-2xl shadow-md overflow-hidden fixed top-1/2 right-4 sm:right-5 z-40 -translate-y-1/2"
+            className="flex flex-col items-center w-[110px] sm:w-[130px] bg-white rounded-2xl shadow-2xl overflow-hidden fixed top-1/2 right-4 sm:right-5 z-40 -translate-y-1/2"
           >
             {/* 로고 영역 */}
             <div className="pt-4 sm:pt-6 flex flex-col gap-2 items-center">
@@ -70,45 +70,45 @@ export default function Sidemenu() {
             </div>
 
             {/* 모집 안내 */}
-            <div className="w-full pb-5 sm:pb-6 flex flex-col items-center justify-center text-center text-[11px] sm:text-sm">
-              <p className="text-red-600 font-semibold leading-tight">
-                전국 EPC
-                <br />
-                태양광 영업자
-                <br />
-                항시 모집중
-              </p>
-              <div className="mt-2 flex flex-col items-center">
-                <Image
-                  src="/kakaotalk.svg"
-                  alt="카카오톡"
-                  width={48}
-                  height={48}
-                  className="sm:w-[60px] sm:h-[60px]"
-                />
-                <Link href="https://open.kakao.com/o/s5gyadsh">
-                  <p className="rounded-2xl text-[11px] sm:text-ms mt-3 bg-red-500 text-white px-3 py-1 hover:bg-white hover:text-red-500 transition-all">
-                    카카오톡 문의
-                  </p>
-                </Link>
+            <div className="w-full flex flex-col items-center justify-center text-center text-[11px] sm:text-sm text-green-950">
+              <div className="mt-2 flex flex-col items-center justify-center">
+                <p className="font-semibold leading-tight  bg-green-950 text-white rounded-2xl flex flex-col items-center justify-between gap-3 p-4 w-screen">
+                  <Image
+                    src="/kakaotalk.svg"
+                    alt="카카오톡"
+                    width={48}
+                    height={48}
+                    className="sm:w-[60px] sm:h-[60px]"
+                  />
+                  전국 EPC
+                  <br />
+                  태양광 영업자
+                  <br />
+                  항시 모집중
+                  <Link href="https://open.kakao.com/o/s5gyadsh">
+                    <p className="rounded-2xl text-[11px] sm:text-ms mt-3 bg-red-500 text-white px-3 py-1 hover:bg-white hover:text-red-500 transition-all">
+                      카카오톡 문의
+                    </p>
+                  </Link>
+                  <Link
+                    href="tel:1688-8096"
+                    className=" w-full flex flex-col items-center text-center bg-green-950"
+                  >
+                    <p className="text-base sm:text-lg font-bold text-white">
+                      대표번호
+                    </p>
+                    <p className="text-lg sm:text-xl font-bold mt-1 text-white">
+                      1688-8096
+                    </p>
+                    <p className="text-[9px] sm:text-[10px] mt-1 text-white">
+                      평일 : 오전 9:00 - 오후 6:00
+                    </p>
+                  </Link>
+                </p>
               </div>
             </div>
 
             {/* 대표번호 */}
-            <Link
-              href="tel:1688-8096"
-              className="bg-green-900 text-white w-full py-5 sm:py-6 flex flex-col items-center text-center"
-            >
-              <p className="text-base sm:text-lg font-bold text-white">
-                대표번호
-              </p>
-              <p className="text-lg sm:text-xl font-bold mt-1 text-white">
-                1688-8096
-              </p>
-              <p className="text-[9px] sm:text-[10px] mt-1 text-white">
-                평일 : 오전 9:00 - 오후 6:00
-              </p>
-            </Link>
 
             {/* 닫기 버튼 */}
             <button
