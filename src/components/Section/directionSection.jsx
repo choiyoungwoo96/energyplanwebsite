@@ -60,7 +60,7 @@ export default function DirectionsSection() {
 
         {/* 주소 텍스트 */}
         <div className="mt-8 bg-[#10221B] text-white inline-block px-6 py-3 rounded-full text-sm font-medium shadow">
-          서울특별시 강서구 마곡중앙로 161-8, 두산더랜드파크 B동 515호
+          서울특별시 강서구 마곡동 800-5 , 리더스타워마곡 1201호
         </div>
       </motion.div>
     </section>

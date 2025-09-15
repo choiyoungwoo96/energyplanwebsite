@@ -24,7 +24,7 @@ export default function Footer() {
               <br />
             </span>
             <span className="hidden md:inline">&nbsp;&nbsp;&nbsp;&nbsp;</span>
-            서울특별시 강서구 마곡중앙로 161-8, 두산더랜드파크 B동 515호
+            서울특별시 강서구 마곡동 800-5, 리더스타워마곡 1201호
           </p>
           <p>사업자등록번호: 422-87-03644 &nbsp;&nbsp; 대표자: 강성묵</p>
           <p>Copyright ⓒ ENERGYPLAN Co., Ltd. All rights reserved.</p>
