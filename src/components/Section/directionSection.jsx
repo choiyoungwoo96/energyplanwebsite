@@ -17,7 +17,10 @@ export default function DirectionsSection() {
       window.kakao.maps.load(() => {
         const container = document.getElementById("map");
         const options = {
-          center: new window.kakao.maps.LatLng(37.5690039, 126.8272146),
+          center: new window.kakao.maps.LatLng(
+            37.5585735125799,
+            126.832711191764
+          ),
           level: 3,
         };
 
@@ -25,8 +28,8 @@ export default function DirectionsSection() {
 
         // 마커 표시
         const markerPosition = new window.kakao.maps.LatLng(
-          37.5690039,
-          126.8272146
+          37.5585735125799,
+          126.832711191764
         );
         const marker = new window.kakao.maps.Marker({
           position: markerPosition,
